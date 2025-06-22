@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consulta Inteligente</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+      height: 100vh;
+    }
+
+    #sidebar {
+      width: 250px;
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-right: 1px solid #333;
+    }
+
+    #sidebar h2 {
+      font-size: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #03a9f4;
+    }
+
+    .menu-item {
+      margin: 10px 0;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #333;
+    }
+
+    .menu-item.active {
+      background-color: #03a9f4;
+      color: #000;
+    }
+
+    #main {
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    #main h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #contenido {
+      background-color: #1e1e1e;
+      padding: 20px;
+      border-radius: 10px;
+      min-height: 300px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+    <h2>Consultas</h2>
+    <div class="menu-item" onclick="cargar('vehiculos.html', 'Vehículos', this)">Vehículos</div>
+    <div class="menu-item" onclick="cargar('personas.html', 'Personas', this)">Personas</div>
+    <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">IMEI</div>
+    <div class="menu-item" onclick="cargar('vehiculos_fiscalia.html', 'Vehículos (Fiscalía)', this)">Vehículos (Fiscalía)</div>
+    <div class="menu-item" onclick="cargar('personas_fiscalia.html', 'Personas (Fiscalía)', this)">Personas (Fiscalía)</div>
+    <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículos (Embargos)', this)">Vehículos (Embargos)</div>
+    <div class="menu-item" onclick="cargar('imei_no_registrado.html', 'IMEI no registrado', this)">IMEI no registrado</div>
+    <div class="menu-item" onclick="cargar('imei_duplicado.html', 'IMEI Duplicado', this)">IMEI Duplicado</div>
+    <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Positivo', this)">IMEI - Positivo</div>
+    <div class="menu-item" onclick="cargar('vehiculo_positivo.html', 'Vehículo - Positivo', this)">Vehículo - Positivo</div>
+    <div class="menu-item" onclick="cargar('persona_positivo.html', 'Persona - Positivo', this)">Persona - Positivo</div>
+  </div>
+
+  <div id="main">
+    <h1 id="titulo">Bienvenido</h1>
+    <div id="contenido">
+      Selecciona una opción del menú para comenzar.
+    </div>
+  </div>
+
+  <script>
+function cargar(archivo, titulo, elemento) {
+    document.getElementById("titulo").textContent = titulo;
+
+    fetch(archivo)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Error al cargar: " + archivo);
+        }
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById("contenido").innerHTML = data;
+
+        // Llama a la función adecuada según el archivo cargado
+        switch (archivo) {
+          case "vehiculos.html":
+            inicializarFormularioVehiculos(); break;
+          case "personas.html":
+            setTimeout(() => {
+            inicializarFormularioPersonas();
+            }, 100); // espera 100ms
+            break;
+          case "imei.html":
+            setTimeout(() => {
+            inicializarFormularioImei(); 
+            }, 100); // espera 100ms            
+            break;
+          case "vehiculos_fiscalia.html":
+          setTimeout(() => {
+            inicializarFormularioVehiculoFiscalia(); 
+             }, 100); // espera 100ms            
+            break;
+          case "personas_fiscalia.html":
+            setTimeout(() => {
+            inicializarFormularioPersonaFiscalia(); 
+            }, 100); // espera 100ms
+            break;
+          case "vehiculos_embargos.html":
+            inicializarFormularioVehiculoEmbargo(); break;
+          case "imei_no_registrado.html":
+            inicializarFormularioImeiNoRegistrado(); break;
+          case "imei_duplicado.html":
+            inicializarFormularioImeiDuplicado(); break;
+          case "imei_positivo.html":
+            inicializarFormularioImeiPositivo(); break;
+          case "vehiculo_positivo.html":
+            inicializarFormularioVehiculoPositivo(); break;
+          case "persona_positivo.html":
+            inicializarFormularioPersonaPositivo(); break;
+        }
+      })
+      .catch(error => {
+        document.getElementById("contenido").innerHTML = `<p style="color: red;">${error.message}</p>`;
+      });
+
+    // Marcar menú activo
+    document.querySelectorAll(".menu-item").forEach(item => item.classList.remove("active"));
+    elemento.classList.add("active");
+  }
+  
+  function inicializarFormularioVehiculos() {
+  const form = document.getElementById("vehiculoForm");
+  const textarea = document.getElementById("relat");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const grado = document.getElementById("gradoComandante").value;
+    const fecha = document.getElementById("fecha").value;
+    const hora = document.getElementById("hora").value;
+    const placaReal = document.getElementById("placaReal").value.toUpperCase();
+    const marca = document.getElementById("marca").value.toUpperCase();
+    const linea = document.getElementById("linea").value.toUpperCase();
+    const color = document.getElementById("color").value.toUpperCase();
+    const clase = document.getElementById("clase").value;
+    const tipo = document.getElementById("tipoServicio").value;
+    const placaErronea = document.getElementById("placaErronea").value.toUpperCase();
+    const fechaFormateada = fecha.split("-").reverse().join("-");
+    textarea.value = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${color}, clase de vehículo ${clase}, tipo de servicio ${tipo}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+  });
+}
+
+function inicializarFormularioPersonas() {
+  const form = document.getElementById("personaForm");
+  const out = document.getElementById("relatoPersona");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandanteep").value;
+    const fecha = document.getElementById("fechaep").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horaep").value;
+    const tipoDocumento = document.getElementById("t_documento").value;
+    const cedulaReal = document.getElementById("cedulaReal").value.toUpperCase();
+    const nombre = document.getElementById("nombre_ciudadano").value.toUpperCase();
+    const fechaNacimiento = document.getElementById("f_nacimiento").value.split("-").reverse().join("-");
+    const lugarNacimiento = document.getElementById("lugar_nac").value.toUpperCase();
+    const cedulaErronea = document.getElementById("cedulaErronea").value.toUpperCase();
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre}, identificado con ${tipoDocumento} ${cedulaReal}, nacido el ${fechaNacimiento}, en ${lugarNacimiento}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la ${tipoDocumento}, ${cedulaErronea} al cual le arroja un antecedente positivo, es de anotar que el ciudadano que se encontraba en el sitio al momento de realizar la verificación se encuentra sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
+  });
+}
+
+function inicializarFormularioImei() {
+  const form = document.getElementById("eimeiForm");
+  const out = document.getElementById("relati");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandanteei").value;
+    const fecha = document.getElementById("fechaei").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horaei").value;
+    const imeiReal = document.getElementById("imeiReal").value;
+    const marca = document.getElementById("marcace").value.toUpperCase();
+    const referencia = document.getElementById("referenciace").value.toUpperCase();
+    const imeiErroneo = document.getElementById("imeiErroneo").value;
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al IMEI ${imeiReal}, marca ${marca}, referencia ${referencia}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes al IMEI ${imeiErroneo}, al cual le arroja un antecedente positivo, es de anotar que el dispositivo celular que poseia el ciudadano al momento de realizarle la respectiva verificación se encontraba sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
+  });
+}
+
+function inicializarFormularioVehiculoFiscalia() {
+  const form = document.getElementById("ftvehiculoForm");
+  const out = document.getElementById("relatft");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandanteft").value;
+    const fecha = document.getElementById("fechat").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horat").value;
+    const placa = document.getElementById("placat").value.toUpperCase();
+    const marca = document.getElementById("marcat").value.toUpperCase();
+    const linea = document.getElementById("lineat").value.toUpperCase();
+    const color = document.getElementById("colort").value.toUpperCase();
+    const clase = document.getElementById("claset").value;
+    const tipoServicio = document.getElementById("tipoServiciot").value;
+    const chasis = document.getElementById("chasist").value.toUpperCase();
+    const motor = document.getElementById("motort").value.toUpperCase();
+    const fiscalia = document.getElementById("fiscalt").value;
+    const tipoFiscalia = document.getElementById("tipofiscaliat").value;
+    const spoa = document.getElementById("spoat").value;
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue recuperado y mediante acta de entrega emanada por la fiscalía ${fiscalia} ${tipoFiscalia} hace la entrega de la misma al propietario. Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+
+    out.value = relato;
+  });
+}
+
+function inicializarFormularioPersonaFiscalia() {
+  const form = document.getElementById("personafiscaliaForm");
+  const out = document.getElementById("relatoPersona_fiscalia");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandantepf").value;
+    const fecha = document.getElementById("fechapf").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horapf").value;
+    const tipoDoc = document.getElementById("t_documentopf").value;
+    const cedula = document.getElementById("cedulapf").value.toUpperCase();
+    const nombre = document.getElementById("nombre_ciudadanopf").value.toUpperCase();
+    const lugarExp = document.getElementById("expedicionpf").value.toUpperCase();
+    const juzgado = document.getElementById("juzgadopf").value.toUpperCase();
+    const oficio = document.getElementById("noficiopf").value.toUpperCase();
+    const fechaOficioRaw = document.getElementById("fechaoficiopf").value;
+    const fechaOficio = fechaOficioRaw ? fechaOficioRaw.split("-").reverse().join("-") : "sin fecha";
+    const spoa = document.getElementById("spoapf").value;
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDoc} ${cedula} de ${lugarExp}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, al solicitar la ampliación del antecedente positivo ante la Seccional de Investigación Criminal - SIJIN, y dentro de los resultados arrojados por esta dependencia, el ciudadano en mención presenta actualmente la extinción y/o cancelación de la sentencia condenatoria emanado por el ${juzgado}, mediante número de oficio ${oficio} del ${fechaOficio} dentro del proceso ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
+  });
+}
+
+function inicializarFormularioVehiculoEmbargo() {
+  const form = document.getElementById("vehiculoEmbargoForm");
+  const out = document.getElementById("relatoVehiculoEmbargo");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const placa = document.getElementById("placaEmbargo").value.toUpperCase();
+    const entidad = document.getElementById("entidadEmbargo").value.toUpperCase();
+    out.value = `El vehículo de placas ${placa} presenta medida de embargo por parte de ${entidad}.`;
+  });
+}
+
+function inicializarFormularioImeiNoRegistrado() {
+  const form = document.getElementById("imeiNoRegistradoForm");
+  const out = document.getElementById("relatoImeiNR");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const imei = document.getElementById("imeiNR").value;
+    out.value = `El IMEI ${imei} no se encuentra registrado en la base de datos nacional.`;
+  });
+}
+
+function inicializarFormularioImeiDuplicado() {
+  const form = document.getElementById("imeiDuplicadoForm");
+  const out = document.getElementById("relatoImeiDup");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const imei = document.getElementById("imeiDup").value;
+    const cantidad = document.getElementById("cantidad").value;
+    out.value = `El IMEI ${imei} está duplicado y fue detectado en ${cantidad} dispositivos distintos.`;
+  });
+}
+
+function inicializarFormularioImeiPositivo() {
+  const form = document.getElementById("imeiPositivoForm");
+  const out = document.getElementById("relatoImeiPos");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const imei = document.getElementById("imeiPos").value;
+    const entidad = document.getElementById("reporte").value.toUpperCase();
+    out.value = `El IMEI ${imei} figura como positivo por reporte de la entidad ${entidad}.`;
+  });
+}
+
+function inicializarFormularioVehiculoPositivo() {
+  const form = document.getElementById("vehiculoPositivoForm");
+  const out = document.getElementById("relatoVehiculoPos");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const placa = document.getElementById("placaPos").value.toUpperCase();
+    const delito = document.getElementById("delito").value.toUpperCase();
+    out.value = `El vehículo de placas ${placa} figura como positivo por el delito de ${delito}.`;
+  });
+}
+
+function inicializarFormularioPersonaPositivo() {
+  const form = document.getElementById("personaPositivoForm");
+  const out = document.getElementById("relatoPersonaPos");
+
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombrePos").value.toUpperCase();
+    const alerta = document.getElementById("alerta").value.toUpperCase();
+    out.value = `La persona ${nombre} presenta una alerta por: ${alerta}.`;
+  });
+}
+  
+  </script>
+</body>
+</html>
