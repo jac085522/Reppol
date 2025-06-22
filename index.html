@@ -132,7 +132,10 @@ function cargar(archivo, titulo, elemento) {
             }, 100); // espera 100ms
             break;
           case "vehiculos_embargos.html":
-            inicializarFormularioVehiculoEmbargo(); break;
+            setTimeout(() => {
+            inicializarFormularioVehiculoEmbargo(); 
+            }, 100); // espera 100ms
+            break;
           case "imei_no_registrado.html":
             inicializarFormularioImeiNoRegistrado(); break;
           case "imei_duplicado.html":
@@ -275,14 +278,29 @@ function inicializarFormularioPersonaFiscalia() {
 }
 
 function inicializarFormularioVehiculoEmbargo() {
-  const form = document.getElementById("vehiculoEmbargoForm");
-  const out = document.getElementById("relatoVehiculoEmbargo");
+  const form = document.getElementById("vehiculoembargoForm");
+  const out = document.getElementById("relatev");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const placa = document.getElementById("placaEmbargo").value.toUpperCase();
-    const entidad = document.getElementById("entidadEmbargo").value.toUpperCase();
-    out.value = `El vehículo de placas ${placa} presenta medida de embargo por parte de ${entidad}.`;
+
+    const grado = document.getElementById("gradoComandanteve").value;
+    const fecha = document.getElementById("fechave").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horave").value;
+    const placa = document.getElementById("placave").value.toUpperCase();
+    const marca = document.getElementById("marcave").value.toUpperCase();
+    const linea = document.getElementById("lineave").value.toUpperCase();
+    const color = document.getElementById("colorve").value.toUpperCase();
+    const chasis = document.getElementById("nchasisve").value.toUpperCase();
+    const motor = document.getElementById("nmotor").value.toUpperCase();
+    const clase = document.getElementById("claseve").value;
+    const tipoServicio = document.getElementById("tipoServiciove").value;
+    const radicado = document.getElementById("nradicadove").value.toUpperCase();
+    const juzgado = document.getElementById("juzgadove").value.toUpperCase();
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${hora}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario y ordenaron el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi Mayor y demás fines estime pertinentes.`;
+
+    out.value = relato;
   });
 }
 

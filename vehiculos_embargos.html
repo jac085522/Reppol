@@ -1,0 +1,59 @@
+<div style="max-width: 500px; margin: 0 auto;">
+  <form id="vehiculoembargoForm" style="display: flex; flex-direction: column; gap: 12px;">
+    <label for="gradoComandante">Grado del comandante</label>
+    <select id="gradoComandanteve" name="gradoComandanteve">
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
+
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fechave" name="fechave" />
+
+    <label for="hora">Hora</label>
+    <input type="text" id="horave" name="horave" />
+
+    <label for="placaReal">Placa del vehículo real</label>
+    <input type="text" id="placave" name="placave" maxlength="6" />
+
+    <label for="marca">Marca del vehículo</label>
+    <input type="text" id="marcave" name="marcave" />
+
+    <label for="linea">Línea del vehículo</label>
+    <input type="text" id="lineave" name="lineave" />
+
+    <label for="color">Color del vehículo</label>
+    <input type="text" id="colorve" name="colorve" />
+	
+	<label for="nchasis">Chasis</label>
+    <input type="text" id="nchasisve" name="nchasisve" />
+	
+	<label for="nmotor">Motor</label>
+    <input type="text" id="nmotor" name="nmotor" />
+
+    <label for="clase">Clase de vehículo</label>
+    <select id="claseve" name="claseve">
+      <option value="Automóvil">Automóvil</option>
+      <option value="Motocicleta">Motocicleta</option>
+    </select>
+
+    <label for="tipoServicio">Tipo de servicio del vehículo</label>
+    <select id="tipoServiciove" name="tipoServiciove">
+      <option value="Público">Público</option>
+      <option value="Particular">Particular</option>
+    </select>
+
+    <label for="nradicado">Nº De Radicado</label>
+    <input type="text" id="nradicadove" name="nradicadove" maxlength="25" />
+	
+	<label for="juzgado">Juzgado y Municipio</label>
+    <input type="text" id="juzgadove" name="juzgadove" />
+
+    <button type="submit" style="margin-top: 1em;">Generar</button>
+  </form>
+
+  <textarea id="relatev" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%; resize: none;"></textarea>
+</div>
