@@ -115,6 +115,14 @@
   	
   }
   
+  function copiarRelato(idTextarea) {
+  const textarea = document.getElementById(idTextarea);
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // Para móviles
+
+  document.execCommand("copy");
+}
+  
   function convertirfechap(){
   	const input = document.getElementById("nreportep").value
   	const fechainput = document.getElementById("fechareportep").value
