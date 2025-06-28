@@ -81,7 +81,8 @@
     <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículos (Embargos)', this)">Vehículos (Embargos)</div>
     <div class="menu-item" onclick="cargar('imei_invalido.html', 'IMEI - Invalido/No Registro/Duplicado)', this)">IMEI - Invalido/No Registro/Duplicado</div>
     <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Hurto/Extravio', this)">IMEI - Hurto/Extravio</div>
-    <div class="menu-item" onclick="cargar('vehiculo_positivo.html', 'Vehículo - Positivo', this)">Vehículo - Positivo</div>
+    <div class="menu-item" onclick="cargar('vehiculos_positivo_fiscalia.html', 'Vehículo - Positivo - Fiscalia', this)">Vehículo - Positivo - Fiscalia</div>
+	<div class="menu-item" onclick="cargar('vehiculos_positivo_embargos.html', 'Vehículo - Positivo - Embargos', this)">Vehículo - Positivo - Embargos</div>
     <div class="menu-item" onclick="cargar('persona_positivo.html', 'Persona - Positivo', this)">Persona - Positivo</div>
   </div>
 
@@ -186,8 +187,16 @@ function cargar(archivo, titulo, elemento) {
             inicializarFormularioImeiPositivo(); 
 			}, 100); // espera 100ms
 			break;
-          case "vehiculo_positivo.html":
-            inicializarFormularioVehiculoPositivo(); break;
+          case "vehiculos_positivo_fiscalia.html":
+		  setTimeout(() => {
+            inicializarFormularioVehiculoPositivoFiscalia(); 
+			}, 100); // espera 100ms
+			break;
+		  case "vehiculos_positivo_embargos.html":
+		  setTimeout(() => {
+            inicializarFormularioVehiculoPositivoEmbargo(); 
+			}, 100); // espera 100ms
+			break;
           case "persona_positivo.html":
             inicializarFormularioPersonaPositivo(); break;
         }
@@ -342,7 +351,7 @@ function inicializarFormularioVehiculoEmbargo() {
     const radicado = document.getElementById("nradicadove").value.toUpperCase();
     const juzgado = document.getElementById("juzgadove").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${hora}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario y ordenaron el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario ya que a este le habian ordenado el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -372,30 +381,6 @@ function inicializarFormularioImeiInvalido() {
   });
 }
 
-function inicializarFormularioImeiNoRegistrado() {
-  const form = document.getElementById("imeiNoRegistradoForm");
-  const out = document.getElementById("relatoImeiNR");
-
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    const imei = document.getElementById("imeiNR").value;
-    out.value = `El IMEI ${imei} no se encuentra registrado en la base de datos nacional.`;
-  });
-}
-
-
-function inicializarFormularioImeiDuplicado() {
-  const form = document.getElementById("imeiDuplicadoForm");
-  const out = document.getElementById("relatoImeiDup");
-
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    const imei = document.getElementById("imeiDup").value;
-    const cantidad = document.getElementById("cantidad").value;
-    out.value = `El IMEI ${imei} está duplicado y fue detectado en ${cantidad} dispositivos distintos.`;
-  });
-}
-
 function inicializarFormularioImeiPositivo() {
   const form = document.getElementById("eimeipositivoForm");
   const out = document.getElementById("relatimep");
@@ -421,15 +406,60 @@ function inicializarFormularioImeiPositivo() {
   });
 }
 
-function inicializarFormularioVehiculoPositivo() {
-  const form = document.getElementById("vehiculoPositivoForm");
-  const out = document.getElementById("relatoVehiculoPos");
+function inicializarFormularioVehiculoPositivoFiscalia() {
+  const form = document.getElementById("ftvehiculopfForm");
+  const out = document.getElementById("relatpf");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const placa = document.getElementById("placaPos").value.toUpperCase();
-    const delito = document.getElementById("delito").value.toUpperCase();
-    out.value = `El vehículo de placas ${placa} figura como positivo por el delito de ${delito}.`;
+
+    const grado = document.getElementById("gradoComandantepf").value;
+    const fecha = document.getElementById("fechapf").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horapf").value;
+    const placa = document.getElementById("placapf").value.toUpperCase();
+    const marca = document.getElementById("marcapf").value.toUpperCase();
+    const linea = document.getElementById("lineapf").value.toUpperCase();
+    const color = document.getElementById("colorpf").value.toUpperCase();
+    const clase = document.getElementById("clasepf").value;
+    const tipoServicio = document.getElementById("tipoServiciopf").value;
+    const chasis = document.getElementById("chasispf").value.toUpperCase();
+    const motor = document.getElementById("motorpf").value.toUpperCase();
+    const fiscalia = document.getElementById("fiscalpf").value.toUpperCase();
+    const tipoFiscalia = document.getElementById("tipofiscaliapf").value;
+    const spoa = document.getElementById("spoapf").value.toUpperCase();
+    const gepol = document.getElementById("gepolpf").value.toUpperCase();
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue dejado a disposicion a la fiscalía ${fiscalia} ${tipoFiscalia} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
+  });
+}
+
+function inicializarFormularioVehiculoPositivoEmbargo() {
+  const form = document.getElementById("vehiculopositivoembargoForm");
+  const out = document.getElementById("relatpe");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandantepe").value;
+    const fecha = document.getElementById("fechape").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horape").value;
+    const placa = document.getElementById("placape").value.toUpperCase();
+    const marca = document.getElementById("marcape").value.toUpperCase();
+    const linea = document.getElementById("lineape").value.toUpperCase();
+    const color = document.getElementById("colorpe").value.toUpperCase();
+    const chasis = document.getElementById("nchasispe").value.toUpperCase();
+    const motor = document.getElementById("nmotor").value.toUpperCase();
+    const clase = document.getElementById("clasepe").value;
+    const tipoServicio = document.getElementById("tipoServiciope").value;
+    const radicado = document.getElementById("nradicadope").value.toUpperCase();
+    const juzgado = document.getElementById("juzgadope").value.toUpperCase();
+    const gepol = document.getElementById("gepolpe").value.toUpperCase();
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que el vehículo antes en mención fue dejado a disposicion del ${juzgado} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo presentaba una orden de inmovilizacion mediante número de radicado ${radicado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
   });
 }
 

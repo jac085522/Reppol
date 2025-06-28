@@ -1,0 +1,72 @@
+<div style="max-width: 500px; margin: 0 auto;">
+  <form id="ftvehiculopfForm" style="display: flex; flex-direction: column; gap: 12px;">
+    <label for="gradoComandante">Grado del comandante</label>
+    <select id="gradoComandantepf" name="gradoComandantepf">
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
+
+    <label for="fecha">Fecha</label>
+    <input type="date" id="fechapf" name="fechapf" />
+
+    <label for="hora">Hora</label>
+    <input type="text" id="horapf" name="horapf" />
+
+    <label for="placaReal">Placa del vehículo</label>
+    <input type="text" id="placapf" name="placapf" maxlength="6" />
+
+    <label for="marca">Marca del vehículo</label>
+    <input type="text" id="marcapf" name="marcapf" />
+
+    <label for="linea">Línea del vehículo</label>
+    <input type="text" id="lineapf" name="lineapf" />
+
+    <label for="color">Color del vehículo</label>
+    <input type="text" id="colorpf" name="colorpf" />
+
+    <label for="clase">Clase de vehículo</label>
+    <select id="clasepf" name="clasepf">
+      <option value="Automóvil">Automóvil</option>
+      <option value="Motocicleta">Motocicleta</option>
+    </select>
+
+    <label for="tipoServicio">Tipo de servicio del vehículo</label>
+    <select id="tipoServiciopf" name="tipoServiciopf">
+      <option value="Público">Público</option>
+      <option value="Particular">Particular</option>
+    </select>
+	
+	<label for="chasispf">Nº Chasis</label>
+    <input type="text" id="chasispf" name="chasispf" maxlength="20"/>
+	
+	<label for="motorpf">Nº Motor</label>
+    <input type="text" id="motorpf" name="motorpf" maxlength="16" />
+
+    <label for="fiscalpf">Fiscalia</label>
+    <input type="text" id="fiscalpf" name="fiscalpf" maxlength="3" />
+	
+	<label for="tipofiscaliapf">Local o Seccional</label>
+    <select id="tipofiscaliapf" name="tipofiscaliapf">
+      <option value="Local">Local</option>
+      <option value="Seccional">Seccional</option>
+    </select>
+	
+	<label for="spoapf">SPOA</label>
+    <input type="text" id="spoapf" name="spoapf" maxlength="21" />
+	
+	<label for="gepolpf">Radicado GEPOL</label>
+    <input type="text" id="gepolpf" name="gepolpf" maxlength="21" />
+
+    <button type="submit" style="margin-top: 1em;">Generar</button>
+  </form>
+
+  <textarea id="relatpf" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%; resize: none;"></textarea>
+  
+
+
+  
+</div>
