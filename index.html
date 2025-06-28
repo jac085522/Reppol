@@ -73,9 +73,9 @@
 
   <div id="sidebar">
     <h2>Consultas</h2>
-    <div class="menu-item" onclick="cargar('vehiculos.html', 'Vehículos', this)">Vehículos</div>
-    <div class="menu-item" onclick="cargar('personas.html', 'Personas', this)">Personas</div>
-    <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">IMEI (Error de Digitacion)</div>
+    <div class="menu-item" onclick="cargar('vehiculos.html', 'Vehículos', this)">Error de Digitación Vehículos</div>
+    <div class="menu-item" onclick="cargar('personas.html', 'Personas', this)">Error de Digitación Personas</div>
+    <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">Error de Digitación IMEI</div>
     <div class="menu-item" onclick="cargar('vehiculos_fiscalia.html', 'Vehículos (Fiscalía)', this)">Vehículos (Fiscalía)</div>
     <div class="menu-item" onclick="cargar('personas_fiscalia.html', 'Personas (Fiscalía)', this)">Personas (Fiscalía)</div>
     <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículos (Embargos)', this)">Vehículos (Embargos)</div>
@@ -83,7 +83,7 @@
     <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Hurto/Extravio', this)">IMEI - Hurto/Extravio</div>
     <div class="menu-item" onclick="cargar('vehiculos_positivo_fiscalia.html', 'Vehículo - Positivo - Fiscalia', this)">Vehículo - Positivo - Fiscalia</div>
 	<div class="menu-item" onclick="cargar('vehiculos_positivo_embargos.html', 'Vehículo - Positivo - Embargos', this)">Vehículo - Positivo - Embargos</div>
-    <div class="menu-item" onclick="cargar('persona_positivo.html', 'Persona - Positivo', this)">Persona - Positivo</div>
+    <div class="menu-item" onclick="cargar('personas_positivo_fiscalia.html', 'Persona - Positivo', this)">Persona - Positivo</div>
   </div>
 
   <div id="main">
@@ -197,8 +197,11 @@ function cargar(archivo, titulo, elemento) {
             inicializarFormularioVehiculoPositivoEmbargo(); 
 			}, 100); // espera 100ms
 			break;
-          case "persona_positivo.html":
-            inicializarFormularioPersonaPositivo(); break;
+          case "personas_positivo_fiscalia.html":
+		  setTimeout(() => {
+            inicializarFormularioPersonaPositivoFiscalia(); 
+			}, 100); // espera 100ms
+			break;
         }
       })
       .catch(error => {
@@ -463,15 +466,30 @@ function inicializarFormularioVehiculoPositivoEmbargo() {
   });
 }
 
-function inicializarFormularioPersonaPositivo() {
-  const form = document.getElementById("personaPositivoForm");
-  const out = document.getElementById("relatoPersonaPos");
+function inicializarFormularioPersonaPositivoFiscalia() {
+  const form = document.getElementById("personapositivofiscaliaForm");
+  const salida = document.getElementById("relatofp");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const nombre = document.getElementById("nombrePos").value.toUpperCase();
-    const alerta = document.getElementById("alerta").value.toUpperCase();
-    out.value = `La persona ${nombre} presenta una alerta por: ${alerta}.`;
+
+    const grado = document.getElementById("gradoComandantefp").value;
+    const fecha = document.getElementById("fechafp").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horafp").value;
+    const tipoDocumento = document.getElementById("t_documentofp").value;
+    const cedula = document.getElementById("cedulafp").value.toUpperCase();
+    const nombre = document.getElementById("nombre_ciudadanofp").value.toUpperCase();
+    const lugarExpedicion = document.getElementById("expedicionfp").value.toUpperCase();
+    const juzgado = document.getElementById("juzgadofp").value.toUpperCase();
+    const noOficio = document.getElementById("noficiofp").value.toUpperCase();
+    const fechaOficio = document.getElementById("fechaoficiofp").value.split("-").reverse().join("-");
+    const spoa = document.getElementById("spoafp").value.toUpperCase();
+    const delito = document.getElementById("delitofp").value.toUpperCase();
+    const gepol = document.getElementById("gepolfp").value.toUpperCase();
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDocumento} ${cedula} de ${lugarExpedicion}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, ciudadano en mencion era solicitado por el ${juzgado}, mediante número de oficio ${noOficio} del ${fechaOficio} dentro del proceso ${spoa} por el delito de ${delito}, motivo por el cual fue dejado a disposicion de ese despacho mediante numero de radicado de GEPOL ${gepol}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    salida.value = relato;
   });
 }
   
