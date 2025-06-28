@@ -319,7 +319,7 @@ function inicializarFormularioVehiculoEmbargo() {
     const radicado = document.getElementById("nradicadove").value.toUpperCase();
     const juzgado = document.getElementById("juzgadove").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${hora}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario y ordenaron el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi Mayor y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${hora}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario y ordenaron el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
