@@ -75,12 +75,11 @@
     <h2>Consultas</h2>
     <div class="menu-item" onclick="cargar('vehiculos.html', 'Vehículos', this)">Vehículos</div>
     <div class="menu-item" onclick="cargar('personas.html', 'Personas', this)">Personas</div>
-    <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">IMEI</div>
+    <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">IMEI (Error de Digitacion)</div>
     <div class="menu-item" onclick="cargar('vehiculos_fiscalia.html', 'Vehículos (Fiscalía)', this)">Vehículos (Fiscalía)</div>
     <div class="menu-item" onclick="cargar('personas_fiscalia.html', 'Personas (Fiscalía)', this)">Personas (Fiscalía)</div>
     <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículos (Embargos)', this)">Vehículos (Embargos)</div>
-    <div class="menu-item" onclick="cargar('imei_no_registrado.html', 'IMEI no registrado', this)">IMEI no registrado</div>
-    <div class="menu-item" onclick="cargar('imei_duplicado.html', 'IMEI Duplicado', this)">IMEI Duplicado</div>
+    <div class="menu-item" onclick="cargar('imei_invalido.html', 'IMEI (No registro, Duplicado, Invalido)', this)">IMEI (No registro, Duplicado, Invalido)</div>
     <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Positivo', this)">IMEI - Positivo</div>
     <div class="menu-item" onclick="cargar('vehiculo_positivo.html', 'Vehículo - Positivo', this)">Vehículo - Positivo</div>
     <div class="menu-item" onclick="cargar('persona_positivo.html', 'Persona - Positivo', this)">Persona - Positivo</div>
@@ -94,6 +93,27 @@
   </div>
 
   <script>
+ 
+ 	function convertirfecha(){
+  	const input = document.getElementById("nreporteii").value
+  	const fechainput = document.getElementById("fechareporteii").value
+  	
+  		if (input.length >= 8){
+  			const aaaa = input.substring(0,4);
+  			const mm = input.substring(4,6);
+  			const dd = input.substring(6,8);
+  			
+  			const fechaformat = `${dd}/${mm}/${aaaa}`;
+  			document.getElementById("fechareporteii").value = fechaformat;  		
+  		}
+  		else
+  		{
+  			fechainput.value="";
+  			
+  		}
+  	
+  }
+  
 function cargar(archivo, titulo, elemento) {
     document.getElementById("titulo").textContent = titulo;
 
@@ -136,10 +156,11 @@ function cargar(archivo, titulo, elemento) {
             inicializarFormularioVehiculoEmbargo(); 
             }, 100); // espera 100ms
             break;
-          case "imei_no_registrado.html":
-            inicializarFormularioImeiNoRegistrado(); break;
-          case "imei_duplicado.html":
-            inicializarFormularioImeiDuplicado(); break;
+          case "imei_invalido.html":
+          	setTimeout(() => {
+            inicializarFormularioImeiInvalido(); 
+            }, 100); // espera 100ms
+            break;
           case "imei_positivo.html":
             inicializarFormularioImeiPositivo(); break;
           case "vehiculo_positivo.html":
@@ -304,6 +325,30 @@ function inicializarFormularioVehiculoEmbargo() {
   });
 }
 
+function inicializarFormularioImeiInvalido() {
+  const form = document.getElementById("eimeiinvalidoForm");
+  const out = document.getElementById("relatimeii");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandanteei").value;
+    const fecha = document.getElementById("fechaii").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horaii").value;
+    const imei = document.getElementById("imeiii").value;
+    const tiporeporte = document.getElementById("tiporeportei").value;
+    const operador = document.getElementById("operadorii").value;
+    const marca = document.getElementById("marcaii").value.toUpperCase();
+    const referencia = document.getElementById("referenciaii").value.toUpperCase();
+    const reporte = document.getElementById("nreporteii").value;
+    const fechaReporte = document.getElementById("fechareporteii").value;
+    
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tiporeporte}, por el operador móvil ${operador}, con número de reporte ${reporte} de fecha ${fechaReporte}, es de anotar que el ciudadano que poseía el dispositivo movil demostró en el sitio su legal procedencia.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
+  });
+}
+
 function inicializarFormularioImeiNoRegistrado() {
   const form = document.getElementById("imeiNoRegistradoForm");
   const out = document.getElementById("relatoImeiNR");
@@ -314,6 +359,7 @@ function inicializarFormularioImeiNoRegistrado() {
     out.value = `El IMEI ${imei} no se encuentra registrado en la base de datos nacional.`;
   });
 }
+
 
 function inicializarFormularioImeiDuplicado() {
   const form = document.getElementById("imeiDuplicadoForm");
