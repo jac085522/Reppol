@@ -114,6 +114,26 @@
   	
   }
   
+  function convertirfechap(){
+  	const input = document.getElementById("nreportep").value
+  	const fechainput = document.getElementById("fechareportep").value
+  	
+  		if (input.length >= 8){
+  			const aaaa = input.substring(0,4);
+  			const mm = input.substring(4,6);
+  			const dd = input.substring(6,8);
+  			
+  			const fechaformat = `${dd}/${mm}/${aaaa}`;
+  			document.getElementById("fechareportep").value = fechaformat;  		
+  		}
+  		else
+  		{
+  			fechainput.value="";
+  			
+  		}
+  	
+  }
+  
 function cargar(archivo, titulo, elemento) {
     document.getElementById("titulo").textContent = titulo;
 
@@ -162,7 +182,10 @@ function cargar(archivo, titulo, elemento) {
             }, 100); // espera 100ms
             break;
           case "imei_positivo.html":
-            inicializarFormularioImeiPositivo(); break;
+		  setTimeout(() => {
+            inicializarFormularioImeiPositivo(); 
+			}, 100); // espera 100ms
+			break;
           case "vehiculo_positivo.html":
             inicializarFormularioVehiculoPositivo(); break;
           case "persona_positivo.html":
@@ -374,14 +397,27 @@ function inicializarFormularioImeiDuplicado() {
 }
 
 function inicializarFormularioImeiPositivo() {
-  const form = document.getElementById("imeiPositivoForm");
-  const out = document.getElementById("relatoImeiPos");
+  const form = document.getElementById("eimeipositivoForm");
+  const out = document.getElementById("relatimep");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const imei = document.getElementById("imeiPos").value;
-    const entidad = document.getElementById("reporte").value.toUpperCase();
-    out.value = `El IMEI ${imei} figura como positivo por reporte de la entidad ${entidad}.`;
+
+    const grado = document.getElementById("gradoComandanteep").value;
+    const fecha = document.getElementById("fechap").value.split("-").reverse().join("-");
+    const hora = document.getElementById("horap").value;
+    const imei = document.getElementById("imeip").value;
+    const marca = document.getElementById("marcap").value.toUpperCase();
+    const referencia = document.getElementById("referenciap").value.toUpperCase();
+    const tipoReporte = document.getElementById("tiporeportep").value;
+    const operador = document.getElementById("operadorp").value.toUpperCase();
+    const comparendo = document.getElementById("ncomparendop").value;
+    const nReporte = document.getElementById("nreportep").value;
+    const fechaReporte = document.getElementById("fechareportep").value;
+
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tipoReporte}, por el operador móvil ${operador}, con número de reporte ${nReporte} de fecha ${fechaReporte}, motivo por el cual se procede a dar a la aplicación de la ley 1801 artículo 95 numeral 1 y a la respectiva incautacion. Es de anotar que dicho dispositivo móvil se deja a disposición y bajo custodia de la oficina de medidas correctivas mediante acta de incautacion de elementos varios con número de radicado ${comparendo}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+    out.value = relato;
   });
 }
 
