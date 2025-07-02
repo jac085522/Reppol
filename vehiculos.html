@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulario Persona</title>
+  <title>Formulario Vehiculo</title>
 
   <!-- Fuente Barlow Condensed -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,11 +22,33 @@
     }
 
     form {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Para que no se desborde la imagen ::before */
+}
+
+form::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background: url('fondo.png') no-repeat center center;
+  background-size: contain; /* Asegura que se vea completa */
+  opacity: 0.3; /* Marca de agua muy sutil */
+  pointer-events: none;
+  z-index: 0;
+}
+
+form * {
+  position: relative;
+  z-index: 1;
+}
 
     label {
       font-weight: 600;
