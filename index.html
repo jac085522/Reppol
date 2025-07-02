@@ -94,27 +94,27 @@
     <div class="menu-group">
       <div class="menu-item" onclick="toggleSubmenu(this)">Personas ▼</div>
       <div class="submenu">
-        <div class="menu-item" onclick="cargar('personas.html', 'Personas', this)">Error de Digitación</div>
-        <div class="menu-item" onclick="cargar('personas_fiscalia.html', 'Personas (Fiscalía)', this)">Antecedente Positivo - Sin Novedad</div>
-        <div class="menu-item" onclick="cargar('personas_positivo_fiscalia.html', 'Persona - Positivo', this)">Dejada a Disposicion FIscalia</div>
+        <div class="menu-item" onclick="cargar('personas.html', 'Error de Digitación Personas', this)">Error de Digitación</div>
+        <div class="menu-item" onclick="cargar('personas_fiscalia.html', 'Antecedente Positivo Personas (Fiscalía) - Sin Novedad', this)">Antecedente Positivo - Sin Novedad</div>
+        <div class="menu-item" onclick="cargar('personas_positivo_fiscalia.html', 'Persona Dejada a Disposicion Fiscalia - Antecedente Positivo', this)">Dejado a Disposicion Fiscalia</div>
       </div>
     </div>
 
     <div class="menu-group">
       <div class="menu-item" onclick="toggleSubmenu(this)">Vehículos ▼</div>
       <div class="submenu">
-        <div class="menu-item" onclick="cargar('vehiculos.html', 'Vehículos', this)">Error de Digitación</div>
-        <div class="menu-item" onclick="cargar('vehiculos_fiscalia.html', 'Vehículos (Fiscalía)', this)">Antecedente Positivo - Sin Novedad (Fiscalia)</div>
-        <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículos (Embargos)', this)">Antecedente Positivo - Sin Novedad (Juzgado)</div>
-        <div class="menu-item" onclick="cargar('vehiculos_positivo_fiscalia.html', 'Vehículo - Positivo - Fiscalia', this)">Dejado a Disposicion Fiscalia</div>
-        <div class="menu-item" onclick="cargar('vehiculos_positivo_embargos.html', 'Vehículo - Positivo - Embargos', this)">Dejado a Disposicion Embargos</div>
+        <div class="menu-item" onclick="cargar('vehiculos.html', 'Error de Digitación Vehículos', this)">Error de Digitación</div>
+        <div class="menu-item" onclick="cargar('vehiculos_fiscalia.html', 'Vehículo Antecedente Positivo - Sin Novedad (Fiscalía)', this)">Antecedente Positivo - Sin Novedad (Fiscalia)</div>
+        <div class="menu-item" onclick="cargar('vehiculos_embargos.html', 'Vehículo Antecedente Positivo - Sin Novedad (Juzgado)', this)">Antecedente Positivo - Sin Novedad (Juzgado)</div>
+        <div class="menu-item" onclick="cargar('vehiculos_positivo_fiscalia.html', 'Vehículo Antecedente Positivo - Dejado a Disposicion Fiscalia', this)">Dejado a Disposicion Fiscalia</div>
+        <div class="menu-item" onclick="cargar('vehiculos_positivo_embargos.html', 'Vehículo Antecedente Positivo - Dejado a Disposicion Juzgado', this)">Dejado a Disposicion Juzgado</div>
       </div>
     </div>
 
     <div class="menu-group">
       <div class="menu-item" onclick="toggleSubmenu(this)">IMEI ▼</div>
       <div class="submenu">
-        <div class="menu-item" onclick="cargar('imei.html', 'IMEI', this)">Error de Digitación</div>
+        <div class="menu-item" onclick="cargar('imei.html', 'Error de Digitación IMEI', this)">Error de Digitación</div>
         <div class="menu-item" onclick="cargar('imei_invalido.html', 'IMEI - Invalido/No Registro/Duplicado', this)">IMEI Invalido/No Registro/Duplicado</div>
         <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Hurto/Extravio', this)">IMEI - Hurto/Extravio</div>
       </div>
@@ -288,7 +288,7 @@ function inicializarFormularioPersonas() {
     const fecha = document.getElementById("fechaep").value.split("-").reverse().join("-");
     const hora = document.getElementById("horaep").value;
     const tipoDocumento = document.getElementById("t_documento").value;
-    const cedulaReal = document.getElementById("cedulaReal").value.toUpperCase();
+    const cedulaReal = document.getElementById("cedulaReal").value;
     const nombre = document.getElementById("nombre_ciudadano").value.toUpperCase();
     const fechaNacimiento = document.getElementById("f_nacimiento").value.split("-").reverse().join("-");
     const lugarNacimiento = document.getElementById("lugar_nac").value.toUpperCase();
