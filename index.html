@@ -84,12 +84,30 @@
       font-weight: normal;
       font-size: 14px;
     }
+
+    #footer {
+  position: fixed;
+  bottom: 0;
+  left: 250px; /* deja espacio para el sidebar */
+  right: 0;
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  border-top: 1px solid #ccc;
+  z-index: 999;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.05);
+}
+
+    
   </style>
 </head>
 <body>
 
 <div id="sidebar">
-    <h2>Aclaratorio</h2>
+    <h2>Informes</h2>
 
     <div class="menu-group">
       <div class="menu-item" onclick="toggleSubmenu(this)">Personas ▼</div>
@@ -792,5 +810,10 @@ function inicializarFormularioPlanDeTrabajo() {
     }
   }
   </script>
+
+  <footer id="footer">
+  Plataforma creada por: <strong>SI. Jhonny Alejandro Casas Cardozo</strong> — Ingeniero en Sistemas, Especialista en Seguridad Informática &copy; 2025
+</footer>
+  
 </body>
 </html>
