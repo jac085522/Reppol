@@ -119,6 +119,14 @@
         <div class="menu-item" onclick="cargar('imei_positivo.html', 'IMEI - Hurto/Extravio', this)">IMEI - Hurto/Extravio</div>
       </div>
     </div>
+
+      <div class="menu-group">
+      <div class="menu-item" onclick="toggleSubmenu(this)">Plan de Trabajo ▼</div>
+      <div class="submenu">
+        <div class="menu-item" onclick="cargar('plan_de_trabajo.html', 'Plan de Trabajo', this)">Plan de Trabajo</div>
+      </div>
+    </div>
+    
   </div>
 
   <div id="main">
@@ -256,6 +264,11 @@ function cargar(archivo, titulo, elemento) {
             inicializarFormularioPersonaPositivoFiscalia(); 
 			}, 100); // espera 100ms
 			break;
+          case "plan_de_trabajo.html":
+		  setTimeout(() => {
+            inicializarFormularioPlanDeTrabajo(); 
+			}, 100); // espera 100ms
+			break;
         }
       })
       .catch(error => {
@@ -284,7 +297,7 @@ function cargar(archivo, titulo, elemento) {
     const tipo = document.getElementById("tipoServicio").value;
     const placaErronea = document.getElementById("placaErronea").value.toUpperCase();
     const fechaFormateada = fecha.split("-").reverse().join("-");
-    textarea.value = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${color}, clase de vehículo ${clase}, tipo de servicio ${tipo}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    textarea.value = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placaReal}, marca ${marca}, linea ${linea}, color ${color}, clase de vehículo ${clase}, tipo de servicio ${tipo}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la placa ${placaErronea} al cual le arroja un antecedente positivo, es de anotar que el vehiculo que se encontraba en el sitio se encuentra sin novedad.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
   });
 }
 
@@ -305,7 +318,7 @@ function inicializarFormularioPersonas() {
     const lugarNacimiento = document.getElementById("lugar_nac").value.toUpperCase();
     const cedulaErronea = document.getElementById("cedulaErronea").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre}, identificado con ${tipoDocumento} ${cedulaReal}, nacido el ${fechaNacimiento}, en ${lugarNacimiento}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la ${tipoDocumento}, ${cedulaErronea} al cual le arroja un antecedente positivo, es de anotar que el ciudadano que se encontraba en el sitio al momento de realizar la verificación se encuentra sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre}, identificado con ${tipoDocumento} ${cedulaReal}, nacido el ${fechaNacimiento}, en ${lugarNacimiento}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes a la ${tipoDocumento}, ${cedulaErronea} al cual le arroja un antecedente positivo, es de anotar que el ciudadano que se encontraba en el sitio al momento de realizar la verificación se encuentra sin novedad.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -326,7 +339,7 @@ function inicializarFormularioImei() {
     const referencia = document.getElementById("referenciace").value.toUpperCase();
     const imeiErroneo = document.getElementById("imeiErroneo").value;
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al IMEI ${imeiReal}, marca ${marca}, referencia ${referencia}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes al IMEI ${imeiErroneo}, al cual le arroja un antecedente positivo, es de anotar que el dispositivo celular que poseia el ciudadano al momento de realizarle la respectiva verificación se encontraba sin novedad.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al IMEI ${imeiReal}, marca ${marca}, referencia ${referencia}, sin más datos, me permito informar que por error de digitacion se solicita antecedentes al IMEI ${imeiErroneo}, al cual le arroja un antecedente positivo, es de anotar que el dispositivo celular que poseia el ciudadano al momento de realizarle la respectiva verificación se encontraba sin novedad.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -354,7 +367,7 @@ function inicializarFormularioVehiculoFiscalia() {
     const tipoFiscalia = document.getElementById("tipofiscaliat").value;
     const spoa = document.getElementById("spoat").value;
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue recuperado y mediante acta de entrega emanada por la fiscalía ${fiscalia} ${tipoFiscalia} hace la entrega de la misma al propietario. Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue recuperado y mediante acta de entrega emanada por la fiscalía ${fiscalia} ${tipoFiscalia} hace la entrega de la misma al propietario.Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
 
     out.value = relato;
@@ -381,7 +394,7 @@ function inicializarFormularioPersonaFiscalia() {
     const fechaOficio = fechaOficioRaw ? fechaOficioRaw.split("-").reverse().join("-") : "sin fecha";
     const spoa = document.getElementById("spoapf").value;
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDoc} ${cedula} de ${lugarExp}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, al solicitar la ampliación del antecedente positivo ante la Seccional de Investigación Criminal - SIJIN, y dentro de los resultados arrojados por esta dependencia, el ciudadano en mención presenta actualmente la extinción y/o cancelación de la sentencia condenatoria emanado por el ${juzgado}, mediante número de oficio ${oficio} del ${fechaOficio} dentro del proceso ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDoc} ${cedula} de ${lugarExp}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, al solicitar la ampliación del antecedente positivo ante la Seccional de Investigación Criminal - SIJIN, y dentro de los resultados arrojados por esta dependencia, el ciudadano en mención presenta actualmente la extinción y/o cancelación de la sentencia condenatoria emanado por el ${juzgado}, mediante número de oficio ${oficio} del ${fechaOficio} dentro del proceso ${spoa}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -408,7 +421,7 @@ function inicializarFormularioVehiculoEmbargo() {
     const radicado = document.getElementById("nradicadove").value.toUpperCase();
     const juzgado = document.getElementById("juzgadove").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario ya que a este le habian ordenado el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que, ${clase} antes en mencion fue entregado al propietario ya que a este le habian ordenado el levantamiento de las medidas cautelares mediante número de radicado ${radicado}, emanado por el ${juzgado}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -432,7 +445,7 @@ function inicializarFormularioImeiInvalido() {
     const reporte = document.getElementById("nreporteii").value;
     const fechaReporte = document.getElementById("fechareporteii").value;
     
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tiporeporte}, por el operador móvil ${operador}, con número de reporte ${reporte} de fecha ${fechaReporte}, es de anotar que el ciudadano que poseía el dispositivo movil demostró en el sitio su legal procedencia.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tiporeporte}, por el operador móvil ${operador}, con número de reporte ${reporte} de fecha ${fechaReporte}, es de anotar que el ciudadano que poseía el dispositivo movil demostró en el sitio su legal procedencia.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -457,7 +470,7 @@ function inicializarFormularioImeiPositivo() {
     const nReporte = document.getElementById("nreportep").value;
     const fechaReporte = document.getElementById("fechareportep").value;
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tipoReporte}, por el operador móvil ${operador}, con número de reporte ${nReporte} de fecha ${fechaReporte}, motivo por el cual se procede a dar a la aplicación de la ley 1801 artículo 95 numeral 1 y a la respectiva incautacion. Es de anotar que dicho dispositivo móvil se deja a disposición y bajo custodia de la oficina de medidas correctivas mediante acta de incautacion de elementos varios con número de radicado ${comparendo}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al dispositivo celular de marca ${marca}, referencia ${referencia}, de IMEI ${imei}, sin más datos, me permito informar que dicho dispositivo antes en mención presenta un reporte por ${tipoReporte}, por el operador móvil ${operador}, con número de reporte ${nReporte} de fecha ${fechaReporte}, motivo por el cual se procede a dar a la aplicación de la ley 1801 artículo 95 numeral 1 y a la respectiva incautacion. Es de anotar que dicho dispositivo móvil se deja a disposición y bajo custodia de la oficina de medidas correctivas mediante acta de incautacion de elementos varios con número de radicado ${comparendo}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -486,7 +499,7 @@ function inicializarFormularioVehiculoPositivoFiscalia() {
     const spoa = document.getElementById("spoapf").value.toUpperCase();
     const gepol = document.getElementById("gepolpf").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue dejado a disposicion a la fiscalía ${fiscalia} ${tipoFiscalia} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el día ${fecha} siendo las ${hora} horas solicitado al vehículo de placas ${placa}, marca ${marca}, línea ${linea}, color ${color}, número de chasis ${chasis}, número de motor ${motor}, clase de vehículo ${clase}, tipo de servicio ${tipoServicio}, sin más datos, me permito informar que el vehículo antes en mención fue dejado a disposicion a la fiscalía ${fiscalia} ${tipoFiscalia} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo se encontraba reportado mediante número de SPOA ${spoa}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -514,7 +527,7 @@ function inicializarFormularioVehiculoPositivoEmbargo() {
     const juzgado = document.getElementById("juzgadope").value.toUpperCase();
     const gepol = document.getElementById("gepolpe").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que el vehículo antes en mención fue dejado a disposicion del ${juzgado} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo presentaba una orden de inmovilizacion mediante número de radicado ${radicado}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al vehiculo de placas ${placa}, marca ${marca}, linea ${linea}, color ${color}, numero de chasis ${chasis} numero de motor ${motor}, clase de vehiculo ${clase}, tipo de servicio ${tipoServicio}, sin mas datos, me permito informar que el vehículo antes en mención fue dejado a disposicion del ${juzgado} mediante radicado de GEPOL ${gepol}. Es de anotar que dicho vehículo presentaba una orden de inmovilizacion mediante número de radicado ${radicado}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     out.value = relato;
   });
@@ -541,9 +554,180 @@ function inicializarFormularioPersonaPositivoFiscalia() {
     const delito = document.getElementById("delitofp").value.toUpperCase();
     const gepol = document.getElementById("gepolfp").value.toUpperCase();
 
-    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDocumento} ${cedula} de ${lugarExpedicion}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, ciudadano en mencion era solicitado por el ${juzgado}, mediante número de oficio ${noOficio} del ${fechaOficio} dentro del proceso ${spoa} por el delito de ${delito}, motivo por el cual fue dejado a disposicion de ese despacho mediante numero de radicado de GEPOL ${gepol}.\n\nLo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+    const relato = `De manera atenta y respetuosa me dirijo a mi ${grado} que, teniendo en cuenta el resultado de antecedente positivo arrojado al dispositivo PDA el dia ${fecha} siendo las ${hora} horas solicitado al ciudadano ${nombre} identificado con ${tipoDocumento} ${cedula} de ${lugarExpedicion}, sin mas datos, cual presentaba un antecedente positivo, me permito informar que, ciudadano en mencion era solicitado por el ${juzgado}, mediante número de oficio ${noOficio} del ${fechaOficio} dentro del proceso ${spoa} por el delito de ${delito}, motivo por el cual fue dejado a disposicion de ese despacho mediante numero de radicado de GEPOL ${gepol}.Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
 
     salida.value = relato;
+  });
+}
+
+function inicializarFormularioPlanDeTrabajo() {
+  const form = document.getElementById("plan_dt");
+  
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+     const fecha1R = document.getElementById("fecha1").value;
+     const fecha2R = document.getElementById("fecha2").value;
+     const direccion1 = document.getElementById("direccion1").value;
+     const direccion2 = document.getElementById("direccion2").value;
+     const patrulla = document.getElementById("patrullac").value;
+     const delito = document.getElementById("delitoc").value;
+
+     // Función para convertir fecha de YYYY-MM-DD a DD/MM/AAAA
+    function formatearFecha(fecha) {
+      if (!fecha) return "";
+      const partes = fecha.split("-");
+      return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    }
+
+    const fecha1 = formatearFecha(fecha1R);
+    const fecha2 = formatearFecha(fecha2R);
+    
+    
+     const textoCelda = `${fecha1}\n\n ${direccion1}\n\n ${patrulla}\n\n ${delito}`;
+     const textoCelda2 = `${fecha2}\n\n ${direccion2}\n\n ${patrulla}\n\n ${delito}`;
+    // Lo muestra en el label
+    document.getElementById("celdaFecha").textContent = textoCelda;
+    document.getElementById("celdaFecha2").textContent = textoCelda2;
+    
+    let actividades = [];
+
+  switch (delito.toLowerCase()) {
+    case "homicidio":
+      actividades = [
+        "Se realiza campaña de prevención, para que no se cometan actos ilícitos en contra de la integridad y vida de personas, evitar tomar la justicia por manos propias, adoptar medidas de seguridad para prevención el delito, se informa a la ciudadanía la importancia por la vida y mantener una sana convivencia.",
+        "Actividades de prevención donde se invita a la ciudadanía a denunciar ante las autoridades competentes todo hecho o información que se conozca en relación al delito del homicidio y que afecte la seguridad y tranquilidad ciudadana.",
+        "Se llevaron a cabo actividades preventivas y educativas contra el Homicidio, brindando charlas de sensibilización dirigida a la ciudadanía, para prevenir este tipo de conductas que afectan la tranquilidad y la convivencia ciudadana, así mismo, para que se eviten al máximo los casos violencia intrafamiliar y las riñas, que puedan derivar homicidios.",
+        "Se comparten los canales institucionales de la patrulla y/o patrulla, como también de la estación de Policía, para que se comuniquen al momento de evidenciar alguna situación especial.",
+        "Actividad de prevención que se adelanta de manera focalizada en sectores donde previamente se han presentado este tipo de delitos o que por sus condiciones, se evidencian factores originadores y facilitadores del delito, en busca de fortalecer la tranquilidad y seguridad ciudadana, se socializan los canales institucionales de la estación, patrulla y línea 123.",
+        "Se realizan actividades de prevención y educación ciudadana, con el fin de prevenir el homicidio, se socializó tomar medidas de seguridad a la comunidad, charlas y reflexiones dirigidas a la ciudadanía sobre la importancia de la tolerancia en la comunidad y el valor de la vida.",
+        "Actividad de prevención con el fin de mitigar los riesgos sociales, invitando a los residentes del sector informar al número de la patrulla, estación de policía o líneas de emergencia, cualquier anomalía o eventualidad que se presente en el sector.",
+        "Actividades de prevención y control del delito logrando generar percepción de seguridad en los lugares de mayor afectación especialmente donde se han presentado homicidios, esto con el objetivo principal de la recolección de información del móvil de hechos y contribuir a la reducción del delito."
+    ];
+      break;
+
+    case "hurto a personas":
+      actividades = [
+        "Se ejecutó actividad preventiva donde se invita a la ciudadanía a informar a las autoridades sobre personas sospechosas que deambulen en su entorno de negocio y/o viviendas, manteniéndose alerta de todo lo que suceda en sus alrededores, reduciendo el factor de oportunidad para el delincuente.",
+        "Actividad de sensibilización a la ciudadanía para que eviten, en la medida posible, desplazamientos con objetos de valor o altas sumas de dinero en sitios de poca visibilidad o de alto riesgo, solicitando el acompañamiento de la Policía Nacional y manteniendo a su alcance el número telefónico de la patrulla.",
+        "Invitación a la comunidad en general a denunciar los hechos que afecten la seguridad y convivencia ciudadana, a través de la línea de emergencia 123 o número de la patrulla.",
+        "Se llevaron a cabo actividades preventivas y educativas contra el hurto a personas, en donde se sensibilizó a los transeúntes y residentes del sector resaltando la importancia de adoptar medidas de autoseguridad.",
+        "Actividad de sensibilización en donde se les dio a conocer las diferentes líneas de emergencia de la institución para que informen de manera inmediata y oportuna a la hora de presenciar o ser víctimas de este u otros delitos.",  
+        "Actividades de registro a personas y vehículos, solicitud de antecedentes, incautación de elementos como armas blancas y estupefacientes, imposición de medidas correctivas y órdenes de comparendo en aplicación a la Ley 1801/2016.",
+        "Actividades de registro y control a los habitantes en situación de calle que transitan por la jurisdicción y quienes son retirados de los lugares en donde estén generando inseguridad e intranquilidad para la comunidad de residentes y transeúntes.",
+        "Actividades de registro y control a personas, motocicletas, tripulantes y conductores, con la finalidad de aportar a la incautación de armas en cualquiera de sus categorías y prevenir la ocurrencia de hurtos a personas en cualquiera de sus modalidades.",
+        "Actividades preventivas contra el hurto a personas, en donde se les entregaron TIPS de seguridad a los habitantes del sector, se les brindaron recomendaciones mediante charlas relámpago para que tomen precauciones al cuidar sus pertenencias y no ser víctimas de este flagelo."      ];
+      break;
+
+    case "hurto a automotores":
+      actividades = [
+        "Se realizaron campañas preventivas en zonas de parqueo y vías públicas, brindando recomendaciones a conductores sobre el uso de sistemas de seguridad como alarmas, GPS y bloqueos adicionales.",
+        "Se efectuaron actividades de control y registro a vehículos en puntos estratégicos del sector, verificando antecedentes y documentación para detectar automotores con reporte de hurto.",
+        "Se entregaron volantes informativos a propietarios de vehículos con TIPS de seguridad, invitándolos a no dejar objetos de valor a la vista y a parquear únicamente en sitios autorizados y con vigilancia.",
+        "Se promovió la denuncia inmediata a la línea 123 o número de la patrulla ante cualquier intento de hurto, presencia de personas sospechosas o vehículos que merodeen repetidamente por la zona.",
+        "Se sensibilizó a los conductores sobre los métodos más comunes utilizados por delincuentes para hurtar vehículos, incluyendo la suplantación de parqueaderos, duplicación de llaves o uso de escáneres.",
+        "Se realizaron jornadas informativas en conjuntos residenciales, centros comerciales y empresas, incentivando el uso de tecnología para el rastreo vehicular y la instalación de cámaras de vigilancia.",
+        "Se fortaleció la articulación con los frentes de seguridad y los administradores de parqueaderos para mejorar la reacción ante eventos sospechosos y prevenir el hurto de automotores en el sector."
+             ];
+      break;
+
+    case "hurto a comercio":
+      actividades = [
+        "Se ejecutó una campaña preventiva contra el hurto a comercio, donde se invita a la comunidad a poner en práctica acciones preventivas que permitan aumentar el autocuidado, la corresponsabilidad, el fortalecimiento de las relaciones con la Policía Nacional, en pro de evitar al máximo cualquier suceso que atente contra el patrimonio de la ciudadanía.",
+        "Actividades preventivas contra el hurto a comercio en el sector, donde se realizaron charlas a las personas, comerciantes y diferentes gremios que se encuentran en el sector, con el fin de sensibilizar a la comunidad en general de tener precaución cuando se acerquen personas a los establecimientos con comportamientos no acordes a lo normal y en caso de presenciar o ser víctima de este delito se les incentiva a denunciar este tipo de conductas que afectan la tranquilidad y así poder tener una sana convivencia y seguridad ciudadana.",
+        "Se realizaron visitas a establecimientos comerciales donde se brindaron recomendaciones de seguridad, haciendo énfasis en la instalación de cámaras, alarmas y la verificación constante de los accesos y cierres del local.",
+        "Se llevaron a cabo charlas con comerciantes y empleados sobre cómo identificar personas sospechosas y la importancia de reportar de inmediato cualquier actitud inusual al número de la patrulla o línea 123.",
+        "Se ejecutaron patrullajes preventivos en zonas comerciales, reforzando la presencia institucional para disuadir la comisión de hurtos y generar tranquilidad en el gremio de comerciantes.",
+        "Se desarrolló una campaña educativa entregando volantes con recomendaciones de seguridad a propietarios de negocios, incentivando el uso de cajas fuertes y la rotación de horarios en el manejo de dinero.",
+        "Se promovió la creación de redes de apoyo entre comerciantes del sector, para mantener comunicación activa y colaborar en la identificación de posibles delincuentes o situaciones de riesgo.",
+        "Se realizaron actividades de registro a personas y vehículos que circulaban por sectores comerciales, con el objetivo de prevenir el hurto y garantizar el cumplimiento del Código Nacional de Seguridad y Convivencia Ciudadana.",    
+        "Se incentivó a los comerciantes a reportar cualquier intento de hurto frustrado, reforzando el mensaje de cero tolerancia frente al delito y fomentando la cultura de la denuncia."    
+      ];
+      break;
+    
+    case "hurto a motocicletas":
+      actividades = [
+        "Actividades en coordinación con la secretaria de tránsito y transporte que permitan materializar un control efectivo a la ocupación irregular del espacio público de los vehículos y motocicletas que se encuentran indebidamente estacionados en via publica generando con esto factor de oportunidad frente al hurto a motocicletas, aplicando los respectivos correctivos que hayan a lugar.",
+        "Se realizó actividad preventiva enfocada en la prevención del hurto a motocicletas, entregando recomendaciones de seguridad a los conductores sobre el uso de dispositivos de bloqueo adicionales como cadenas o alarmas, especialmente en zonas de alto riesgo.",
+        "Se adelantaron charlas de sensibilización con motociclistas en diferentes puntos del sector, destacando la importancia de no dejar las llaves puestas ni documentos dentro del vehículo, y estacionar siempre en lugares autorizados y con vigilancia.",
+        "Se efectuaron controles y verificación de antecedentes a motocicletas y conductores en puntos estratégicos, para identificar vehículos con reporte de hurto y generar percepción de seguridad en la ciudadanía.",
+        "Se invito a la comunidad a denunciar cualquier actitud sospechosa alrededor de motocicletas estacionadas, a través del número de la patrulla o la línea 123, promoviendo la corresponsabilidad y cultura de la denuncia.",
+        "Se desarrolló actividad de prevención mediante la entrega de volantes informativos con TIPS de seguridad a motociclistas en zonas comerciales y residenciales, resaltando prácticas que reducen el riesgo de hurto de sus vehículos.",
+        "Se realizaron actividades de control y patrullajes en lugares donde se presentan mayores índices de hurto a motocicletas, focalizando acciones de registro a personas, solicitud de antecedentes y verificación de placas.",
+        "Se llevó a cabo actividad educativa donde se explicó a los motociclistas el modus operandi más común de los delincuentes para hurtar motocicletas, incentivando el uso de parqueaderos formales, doble seguridad y denuncia oportuna."
+      ];
+      break;
+    
+    case "hurto a residencia":
+      actividades = [
+        "Actividades de prevención en donde se dan recomendaciones de seguridad para prevenir el hurto a residencias, brindando tips de seguridad en donde si observa el comportamiento sospechoso de personas, así como la presencia de motocicletas y vehículos, informe inmediatamente a la Policía. De igual manera, si va a salir deje su residencia bajo el cuidado o recomendada a una persona de confianza.",
+        "Actividades de registro a personas, solicitud de antecedentes tanto a personas como a vehículos que se encuentran sobre las diferentes vías; de este modo poder identificar sujetos que pretendan cometer algún tipo de delito como lo es el hurto a residencia.",
+        "Actividades de prevención contra el hurto a residencias, mediante patrullajes, registro a personas en el sector, allegando a cada una de las residencias mediante el puerta a puerta el número de la patrulla y así mismo impartiendo recomendaciones básicas de seguridad, para evitar ser víctima de este flagelo.",
+        "Se desarrollaron actividades de prevención contra el hurto a residencias, realizando charlas puerta a puerta en donde se entregaron recomendaciones de seguridad para evitar ser víctimas de este delito, como cerrar puertas y ventanas correctamente y no dejar objetos de valor a la vista.",
+        "Se socializó con los residentes del sector la importancia de conformar frentes de seguridad en sus barrios, generando redes de apoyo entre vecinos para alertar sobre personas o vehículos sospechosos que transiten por la zona.",
+        "Se efectuaron patrullajes constantes en zonas residenciales con el fin de disuadir posibles actos delictivos y fortalecer la percepción de seguridad de la comunidad.",
+        "Se invitó a los residentes a informar cualquier situación sospechosa al número de la patrulla o a través de la línea 123, reforzando el llamado a la denuncia y a la comunicación con la Policía Nacional.",
+        "Se llevaron a cabo actividades de sensibilización sobre la importancia de no permitir el ingreso de personas desconocidas a las viviendas, especialmente aquellas que se presentan como técnicos, vendedores o encuestadores.",
+        "Se realizaron controles y solicitudes de antecedentes a personas y vehículos que se encontraban circulando en zonas residenciales, con el objetivo de identificar posibles actores criminales y prevenir hechos delictivos.",
+        "Se brindaron recomendaciones a los ciudadanos sobre la instalación de cámaras de seguridad, iluminación externa, y la adopción de medidas tecnológicas para la protección de sus viviendas y familias.",
+        "Visitas preventivas a residencias, reforzando recomendaciones de seguridad y uso de cerraduras.",
+        "Charlas en conjunto con juntas de acción comunal sobre cómo prevenir el hurto a vivienda.",
+        "Campañas informativas en barrios con antecedentes de hurto residencial.",
+        "Fomento del uso de alarmas comunitarias y redes de apoyo entre vecinos.",
+        "Difusión de canales de denuncia anónima para detectar posibles sospechosos."    
+      ];
+      break;
+    
+    case "lesiones personales":
+      actividades =[
+    
+        "Se realiza la actividad de prevención y educación ciudadana, con el fin de prevenir lesiones personales. Se socializó tomar medidas de seguridad a la comunidad, charlas y reflexiones dirigidas a la ciudadanía sobre la importancia de la tolerancia en la comunidad, con el fin de mitigar los riesgos sociales.",
+        "Se hace la invitación a los residentes del sector, en donde se les invita a informar al número de la patrulla, cualquier anomalía o eventualidad que se presente en el sector.",
+        "Se llevó a cabo actividad de prevención y educación ciudadana de lesiones personales, mediante actividad pedagógica a la ciudadanía, haciendo un llamado a la tolerancia para resolver los conflictos de manera pacífica, haciendo uso del diálogo o los métodos alternativos de solución de conflictos.",
+        "Se invita a la ciudadanía a denunciar o informar en tiempo real sobre hechos que atenten contra la integridad, vida y convivencia en el sector por medio del suministro del número de la patrulla.",
+        "Se realizan actividades en donde se promueven acciones sobre la importancia de evitar y solucionar las diferencias por las vías de hecho o la violencia física.",
+        "Se da a conocer la ruta de atención y resolución de conflictos o diferencias ciudadanas, resaltando la importancia de acudir a las inspecciones de policía, comisarías de familia u oficina de mediación policial. Esto con el fin de que se adopten medidas preventivas en casos que puedan derivar en lesiones con consecuencias fatales y evitar que se conviertan en focos de inseguridad en el sector.",
+        "Se realizaron campañas educativas sobre la importancia de la tolerancia y el manejo pacífico de los conflictos, invitando a la comunidad a resolver sus diferencias mediante el diálogo.",
+        "Se efectuaron charlas en espacios comunitarios y parques sobre los efectos negativos de la violencia física y la necesidad de promover una cultura de paz en los entornos familiares y vecinales.",
+        "Se promovió el uso de mecanismos de mediación y conciliación ante conflictos interpersonales, socializando las rutas de atención en comisarías de familia, inspecciones de policía y oficinas de mediación policial.",    
+        "Se invitó a los residentes del sector a reportar situaciones de violencia o riñas a la línea 123 o al número de la patrulla, destacando la importancia de una intervención oportuna para evitar consecuencias mayores.",
+        "Se adelantaron jornadas preventivas con la comunidad donde se abordaron temas de resolución pacífica de conflictos, autocontrol emocional y respeto por la diferencia, con participación de líderes comunitarios.",
+        "Se hicieron patrullajes preventivos en zonas residenciales y comerciales para identificar situaciones de alteración del orden que pudieran derivar en lesiones personales, interviniendo de forma oportuna.",
+        "Se entregaron recomendaciones en reuniones con la comunidad sobre cómo actuar en situaciones de conflicto para evitar que escalen a hechos violentos, promoviendo la denuncia y el diálogo como herramientas clave."
+    ];
+    
+  }
+    
+    // Mezclar el array homicidio sin modificar el original
+    const actividadesMezcladas = [...actividades].sort(() => Math.random() - 0.5);
+      
+    const parrafo1 = actividadesMezcladas[0];
+    const parrafo2 = actividadesMezcladas[1];
+    const parrafo3 = actividadesMezcladas[2];
+    const parrafo4 = actividadesMezcladas[3];
+    const medidac = "01 Medidas correctivas Artículo 27 Numeral 6 por Ley 1801 del 2016, por medio del registro a persona, en atención a la necesidad de preservar la seguridad y convivencia ciudadana.";
+      
+    const actividad1 = `1. ${parrafo1}\n\n 2. ${parrafo2}\n\n 3. ${medidac}`;
+    const actividad2 = `1. ${parrafo3}\n\n 2. ${parrafo4}\n\n 3. ${medidac}`;
+    document.getElementById("celdaactividad1").textContent = actividad1;
+    document.getElementById("celdaactividad2").textContent = actividad2;
+    
+    const comandantep = document.getElementById("gradoComandante").value
+    const delitop = document.getElementById("delitoc").value
+    const semanap = document.getElementById("semana").value
+    const patrullap = document.getElementById("patrullac").value
+    const seccionp = document.getElementById("seccion").value
+
+    const asuntop = `Asunto: Informe de actividad contra el delito de ${delitop}, ${patrullap}, ${seccionp} Sección de Vigilancia.`;
+    const texto = `De manera atenta y respetuosa me permito enviar a mi ${comandantep}, las actividades realizadas para prevenir el incremento del delito de ${delitop}, en la semana ${semanap} mediante la actividad realizada en el en jurisdicción del ${patrullap} adscritos a la Estación Belén, durante el desarrollo y ejecución de la Campaña preventiva, entrega de volantes y recomendaciones de seguridad, dando cumplimiento a las tareas de la TAMIR y al Plan de Trabajo de la unidad policial en pro de mejorar la seguridad y convivencia ciudadana, así:`;
+    const finp = `Lo anterior para conocimento de mi ${comandantep} y demas fines estime pertinentes`;
+
+    
+    document.getElementById("asunto").textContent = asuntop;
+    document.getElementById("parrafo").textContent = texto;
+    document.getElementById("fin").textContent = finp;
+
   });
 }
 
@@ -560,6 +744,53 @@ function inicializarFormularioPersonaPositivoFiscalia() {
       }
     }
   
+    function seleccionarImagen() {
+    document.getElementById('inputImagen').click();
+  }
+  
+  function seleccionarImagend() {
+    document.getElementById('inputImagend').click();
+  }
+
+  function mostrarImagen(event) {
+    const archivo = event.target.files[0];
+    if (archivo && archivo.type.startsWith('image/')) {
+      const lector = new FileReader();
+      lector.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+
+        const celda = document.getElementById('celdaImagen');
+        // Elimina el botón y input anteriores
+        celda.innerHTML = '';
+        celda.appendChild(img);
+        
+      };
+      lector.readAsDataURL(archivo);
+    } else {
+      alert("Por favor, selecciona una imagen válida.");
+    }
+  }
+  
+  function mostrarImagend(event) {
+    const archivo = event.target.files[0];
+    if (archivo && archivo.type.startsWith('image/')) {
+      const lector = new FileReader();
+      lector.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+
+        const celda = document.getElementById('celdaImagend');
+        // Elimina el botón y input anteriores
+        celda.innerHTML = '';
+        celda.appendChild(img);
+        
+      };
+      lector.readAsDataURL(archivo);
+    } else {
+      alert("Por favor, selecciona una imagen válida.");
+    }
+  }
   </script>
 </body>
 </html>
