@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script src="https://cdn.ckeditor.com/ckeditor5/41.3.0/classic/ckeditor.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reppol</title>
@@ -142,6 +143,7 @@
       <div class="menu-item" onclick="toggleSubmenu(this)">Plan de Trabajo ▼</div>
       <div class="submenu">
         <div class="menu-item" onclick="cargar('plan_de_trabajo.html', 'Plan de Trabajo', this)">Plan de Trabajo</div>
+        <div class="menu-item" onclick="cargar('editor.html', 'Editor de Texto', this)">Editor de Texto</div>
       </div>
     </div>
     
@@ -285,6 +287,11 @@ function cargar(archivo, titulo, elemento) {
           case "plan_de_trabajo.html":
 		  setTimeout(() => {
             inicializarFormularioPlanDeTrabajo(); 
+			}, 100); // espera 100ms
+			break;
+			case "editor.html":
+		  setTimeout(() => {
+            inicializarFormularioEditor(); 
 			}, 100); // espera 100ms
 			break;
         }
@@ -576,6 +583,19 @@ function inicializarFormularioPersonaPositivoFiscalia() {
 
     salida.value = relato;
   });
+}
+
+function inicializarFormularioEditor() {
+  const editorDiv = document.getElementById("editor");
+  if (editorDiv) {
+    ClassicEditor
+      .create(editorDiv)
+      .catch(error => {
+        console.error("Error al crear el editor:", error);
+      });
+  } else {
+    console.warn("Editor no encontrado en el DOM.");
+  }
 }
 
 function inicializarFormularioPlanDeTrabajo() {
