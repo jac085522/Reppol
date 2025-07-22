@@ -1,0 +1,308 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuente Barlow Condensed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>Solicitud POE</title>
+  <style>
+
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      padding: 2em;
+    }
+
+        form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Para que no se desborde la imagen ::before */
+}
+
+form::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background: url('fondo.png') no-repeat center center;
+  background-size: contain; /* Asegura que se vea completa */
+  opacity: 0.3; /* Marca de agua muy sutil */
+  pointer-events: none;
+  z-index: 0;
+}
+  
+  .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%; /* mejor que 300px */
+  margin: 0 auto; /* asegura centrado */
+  text-align: left;
+}
+
+td, th {
+  padding: 10px;
+}
+    td{ 
+        white-space: pre-line;
+    }
+
+    form * {
+  position: relative;
+  z-index: 1;
+}
+
+    label {
+      font-weight: 600;
+    }
+
+    input, select, textarea, button {
+      font-size: 1rem;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    #tablaResumen {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+#tablaResumen td, #tablaResumen th {
+    padding: 8px;
+    border: 1px solid #000;
+    word-wrap: break-word;
+    text-align: center;
+    vertical-align: middle;
+}
+    #celdaImagen {
+    position: relative;
+    height: 150px; /* o la altura deseada de la celda */
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #celdaImagen img {
+    max-width: 100%;
+    max-height: 80%; /* deja 20% arriba y 20% abajo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  #celdaImagen button {
+    margin-top: 20px;
+  }
+    
+    #celdaImagend {
+    position: relative;
+    height: 150px; /* o la altura deseada de la celda */
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #celdaImagend img {
+    max-width: 100%;
+    max-height: 80%; /* deja 20% arriba y 20% abajo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  #celdaImagend button {
+    margin-top: 20px;
+  }
+  #tablaResumen td {
+    text-align: justify;
+  }
+    
+  </style>
+</head>
+
+<div class="container">
+<form id="poe" style="display: flex; flex-direction: column; gap: 12px;">
+<table>
+    <tr>
+      <td>
+      <label for="gradoComandante">Grado Comandante</label><br>
+    <select id="gradoComandantepoe" name="gradoComandantepoe">
+      <option value="Patrullero">Patrullero</option>
+      <option value="Subintendente">Subintendente</option>
+      <option value="Inteniente">Intendente</option>
+      <option value="Intendente Jefe">Intendente Jefe</option>
+      <option value="Subcomisario">Subcomisario</option>
+      <option value="Comisario">Comisario</option>
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
+      </td>
+      <td>
+          <label for="fecha">Fecha Del Caso</label><br>
+          <input type="date" id="fechapoe" name="fechapoe" required/>
+      </td>
+      <td>
+          <label for="patrulla">Patrulla</label><br>
+          <select id="patrullapoe" name="patrullapoe">
+            <option value="MEVALMNVCCD05E02000000001">MEVALMNVCCD05E02000000001</option>
+            <option value="MEVALMNVCCD05E02000000002">MEVALMNVCCD05E02000000002</option>
+            <option value="MEVALMNVCCD05E02000000003">MEVALMNVCCD05E02000000003</option>
+            <option value="MEVALMNVCCD05E02000000004">MEVALMNVCCD05E02000000004</option>
+            <option value="MEVALMNVCCD05E02000000005">MEVALMNVCCD05E02000000005</option>
+            <option value="MEVALMNVCCD05E02000000006">MEVALMNVCCD05E02000000006</option>
+            <option value="MEVALMNVCCD05E02000000007">MEVALMNVCCD05E02000000007</option>
+            <option value="MEVALMNVCCD05E02000000008">MEVALMNVCCD05E02000000008</option>
+            <option value="MEVALMNVCCD05E02000000009">MEVALMNVCCD05E02000000009</option>
+            <option value="MEVALMNVCCD05E02000000010">MEVALMNVCCD05E02000000010</option>
+            <option value="MEVALMNVCCD05E02000000011">MEVALMNVCCD05E02000000011</option>
+            <option value="MEVALMNVCCD05E02000000012">MEVALMNVCCD05E02000000012</option>
+            <option value="MEVALMNVCCD05E02000000013">MEVALMNVCCD05E02000000013</option>
+            <option value="MEVALMNVCCD05E02000000014">MEVALMNVCCD05E02000000014</option>
+            <option value="MEVALMNVCCD05E02000000015">MEVALMNVCCD05E02000000015</option>
+            <option value="MEVALMNVCCD05E02000000016">MEVALMNVCCD05E02000000016</option>
+            <option value="MEVALMNVCCD05E02000000017">MEVALMNVCCD05E02000000017</option>
+            <option value="MEVALMNVCCD05E02000000018">MEVALMNVCCD05E02000000018</option>
+            <option value="MEVALMNVCCD05E02000000019">MEVALMNVCCD05E02000000019</option>
+            <option value="MEVALMNVCCD05E02000000020">MEVALMNVCCD05E02000000020</option>
+            <option value="MEVALMNVCCD05E02000000021">MEVALMNVCCD05E02000000021</option>
+            <option value="MEVALMNVCCD05E02000000022">MEVALMNVCCD05E02000000022</option>
+            <option value="MEVALMNVCCD05E02000000023">MEVALMNVCCD05E02000000023</option>
+            <option value="MEVALMNVCCD05E02000000024">MEVALMNVCCD05E02000000024</option>
+            <option value="MEVALMNVCCD05E02000000025">MEVALMNVCCD05E02000000025</option>
+            <option value="MEVALMNVCCD05E02000000026">MEVALMNVCCD05E02000000026</option>
+            <option value="MEVALMNVCCD05E02000000027">MEVALMNVCCD05E02000000027</option>
+            <option value="MEVALMNVCCD05E02000000028">MEVALMNVCCD05E02000000028</option>
+          
+          </select>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <label for="tactividad">Tipo de Actividad</label><br>
+        
+         <select id="tactividadpoe" name="tactividadpoe">
+         
+              <option value="" disabled selected>Seleccione una actividad</option>
+
+              <option value="Ataque a servidor público">Ataque a servidor público</option>
+              <option value="Daño en bien ajeno">Daño en bien ajeno</option>
+              <option value="Fuga de presos">Fuga de presos</option>
+              <option value="Hallazgo de arma de fuego">Hallazgo de arma de fuego</option>
+              <option value="Hallazgo de arma de menor letalidad">Hallazgo de arma de menor letalidad</option>
+              <option value="Hallazgo de estupefacientes">Hallazgo de estupefacientes</option>
+              <option value="Homicidio">Homicidio</option>
+              <option value="Hurto">Hurto</option>
+              <option value="Hurto agravado">Hurto agravado</option>
+              <option value="Hurto calificado">Hurto calificado</option>
+              <option value="Hurto calificado y agravado">Hurto calificado y agravado</option>
+              <option value="Hurto simple">Hurto simple</option>
+              <option value="Lesiones personales">Lesiones personales</option>
+              <option value="Mercancía recuperada">Mercancía recuperada</option>
+              <option value="Motocicleta recuperada">Motocicleta recuperada</option>
+              <option value="Motocicleta recuperada con capturado">Motocicleta recuperada con capturado</option>
+              <option value="Motocicleta recuperada sin capturado">Motocicleta recuperada sin capturado</option>
+              <option value="Porte, tráfico o fabricación de armas de fuego">Porte, tráfico o fabricación de armas de fuego</option>
+              <option value="Receptación">Receptación</option>
+              <option value="Resistencia a funcionario público">Resistencia a funcionario público</option>
+              <option value="Tráfico, fabricación o porte de estupefacientes">Tráfico, fabricación o porte de estupefacientes</option>
+              <option value="Uso de documento falso o suplantación">Uso de documento falso o suplantación</option>
+              <option value="Vehiculo Recuperado">Vehiculo Recuperado</option>
+              <option value="Violación de habitación ajena o lugares cerrados">Violación de habitación ajena o lugares cerrados</option>
+              <option value="Violencia intrafamiliar">Violencia intrafamiliar</option>
+              <option value="Violación de medidas sanitarias">Violación de medidas sanitarias</option>          
+          </select>
+        
+      </td>
+      <td>
+        <label for="spoa">SPOA</label><br>
+        <input type="text" id="spoapoe" maxlength="21" name="spoapoe" required/>
+      </td>
+      <td>
+        <label for="incidente">Incidente</label><br>
+        <input type="text" id="incidentepoe" maxlength="7" name="incidentepoe" required/>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="companero">Compañero de Patrulla<br>(Grado - Nombres y Apellidos)</label><br>
+        <input type="text" id="companeropoe" name="companeropoe" required style="width: 300px;"/>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <center>
+          <div style="display: flex; justify-content: center; gap: 1em; margin-top: 1em;">
+            <button type="submit" style="margin-top: 1em;">Agregar</button>
+            <button type="button" onclick="limpiarFormulario()" style="margin-top: 1em;">Limpiar</button>
+          </div>
+        </center>
+      </td>
+    </tr>
+
+</table>
+</form>
+</div><br>
+
+<div id="container">
+    
+    <label id="asuntoap" style="font-weight: normal;"></label><br><br>
+    <label id="parrafoap" style="font-weight: normal;"></label><br><br>
+
+    <table id="tablaPoe" border="1" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+      <tr>
+        <th style="text-align: center; vertical-align: middle;"><b>FECHA DEL CASO<b></th>
+        <th style="text-align: center; vertical-align: middle;"><b>PATRULLA<b></th>
+        <th style="text-align: center; vertical-align: middle;"><b>TIPO DE ACTIVIDAD<b></th>
+        <th style="text-align: center; vertical-align: middle;"><b>SPOA<b></th>
+        <th style="text-align: center; vertical-align: middle;"><b>INCIDENTE<b></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Filas se agregarán aquí -->
+    </tbody>
+  </table><br>
+      
+    <label id="finap" style="font-weight: normal;"></label><br><br>
+
+</div>

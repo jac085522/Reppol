@@ -1,7 +1,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Error de Digitación Vehículos</title>
+  <title>Solicitud Estudio Tecnico</title>
 
   <!-- Fuente Barlow Condensed -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
       padding: 2em;
     }
 
-    form {
+        form {
   background-color: white;
   padding: 20px;
   border-radius: 10px;
@@ -76,9 +76,15 @@ form * {
 
 
 <div style="max-width: 500px; margin: 0 auto;">
-  <form id="vehiculoForm" style="display: flex; flex-direction: column; gap: 12px;">
+  <form id="estudio_t" style="display: flex; flex-direction: column; gap: 12px;">
     <label for="gradoComandante">Grado del comandante</label>
-    <select id="gradoComandante" name="gradoComandante">
+    <select id="gradoComandanteet" name="gradoComandanteet">
+      <option value="Patrullero">Patrullero</option>
+      <option value="Subintendente">Subintendente</option>
+      <option value="Inteniente">Intendente</option>
+      <option value="Intendente Jefe">Intendente Jefe</option>
+      <option value="Subcomisario">Subcomisario</option>
+      <option value="Comisario">Comisario</option>
       <option value="Subteniente">Subteniente</option>
       <option value="Teniente">Teniente</option>
       <option value="Capitán">Capitán</option>
@@ -87,45 +93,61 @@ form * {
       <option value="Coronel">Coronel</option>
     </select>
 
-    <label for="fecha">Fecha</label>
-    <input type="date" id="fecha" name="fecha" />
-
-    <label for="hora">Hora</label>
-    <input type="text" id="hora" name="hora" />
-
-    <label for="placaReal">Placa del vehículo real</label>
-    <input type="text" id="placaReal" name="placaReal" maxlength="6" />
+    <label for="placa">Placa del vehículo</label>
+    <input type="text" id="placaet" name="placaet" maxlength="6" />
 
     <label for="marca">Marca del vehículo</label>
-    <input type="text" id="marca" name="marca" />
-
-    <label for="linea">Línea del vehículo</label>
-    <input type="text" id="linea" name="linea" />
+    <input type="text" id="marcaet" name="marcaet" />
 
     <label for="color">Color del vehículo</label>
-    <input type="text" id="color" name="color" />
+    <input type="text" id="coloret" name="coloret" />
+
+    <label for="modelo">Modelo</label>
+    <input type="text" id="modeloet" name="modeloet" />
 
     <label for="clase">Clase de vehículo</label>
-    <select id="clase" name="clase">
+    <select id="claseet" name="claseet">
       <option value="Automóvil">Automóvil</option>
-      <option value="Automóvil">Camion</option>
+      <option value="Camion">Camion</option>
       <option value="Motocicleta">Motocicleta</option>
     </select>
 
     <label for="tipoServicio">Tipo de servicio del vehículo</label>
-    <select id="tipoServicio" name="tipoServicio">
+    <select id="tipoServicioet" name="tipoServicioet">
       <option value="Público">Público</option>
       <option value="Particular">Particular</option>
     </select>
+	
+	<label for="chasis">Nº Chasis</label>
+    <input type="text" id="chasiset" name="chasiset" maxlength="20"/>
+	
+	<label for="motor">Nº Motor</label>
+    <input type="text" id="motoret" name="motoret" maxlength="16" />
 
-    <label for="placaErronea">Placa del vehículo errónea</label>
-    <input type="text" id="placaErronea" name="placaErronea" maxlength="6" />
+    <label for="fiscal">Fiscalia</label>
+    <input type="text" id="fiscalet" name="fiscalet" maxlength="3" />
+	
+	<label for="tipofiscalia">Local o Seccional</label>
+    <select id="tipofiscaliaet" name="tipofiscaliaet">
+      <option value="Local">Local</option>
+      <option value="Seccional">Seccional</option>
+    </select>
 
+    <label for="delito">Delito</label>
+    <input type="text" id="delitoet" name="delitoet"/>
+	
+	<label for="spoa">SPOA</label>
+    <input type="text" id="spoaet" name="spoaet" maxlength="21" />
+	
     <button type="submit" style="margin-top: 1em;">Generar</button>
-	<button type="button" onclick="copiarRelato('relat')">Copiar</button>
+	<button type="button" onclick="copiarRelato('relatet')">Copiar</button>
 
 	
   </form>
 
-  <textarea id="relat" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%; resize: none;"></textarea>
+  <textarea id="relatet" rows="10" cols="60" readonly style="margin-top: 1.5em; width: 100%; resize: none;"></textarea>
+  
+
+
+  
 </div>

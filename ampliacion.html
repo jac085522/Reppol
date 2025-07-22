@@ -1,0 +1,252 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuente Barlow Condensed -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>Ampliacion de Datos SIJIN Automotores</title>
+  <style>
+
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      padding: 2em;
+    }
+
+        form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden; /* Para que no se desborde la imagen ::before */
+}
+
+form::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  background: url('fondo.png') no-repeat center center;
+  background-size: contain; /* Asegura que se vea completa */
+  opacity: 0.3; /* Marca de agua muy sutil */
+  pointer-events: none;
+  z-index: 0;
+}
+  
+  .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%; /* mejor que 300px */
+  margin: 0 auto; /* asegura centrado */
+  text-align: left;
+}
+
+td, th {
+  padding: 10px;
+}
+    td{ 
+        white-space: pre-line;
+    }
+
+    form * {
+  position: relative;
+  z-index: 1;
+}
+
+    label {
+      font-weight: 600;
+    }
+
+    input, select, textarea, button {
+      font-size: 1rem;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    #tablaResumen {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+
+#tablaResumen td, #tablaResumen th {
+    padding: 8px;
+    border: 1px solid #000;
+    word-wrap: break-word;
+    text-align: center;
+    vertical-align: middle;
+}
+    #celdaImagen {
+    position: relative;
+    height: 150px; /* o la altura deseada de la celda */
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #celdaImagen img {
+    max-width: 100%;
+    max-height: 80%; /* deja 20% arriba y 20% abajo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  #celdaImagen button {
+    margin-top: 20px;
+  }
+    
+    #celdaImagend {
+    position: relative;
+    height: 150px; /* o la altura deseada de la celda */
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  #celdaImagend img {
+    max-width: 100%;
+    max-height: 80%; /* deja 20% arriba y 20% abajo */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+
+  #celdaImagend button {
+    margin-top: 20px;
+  }
+  #tablaResumen td {
+    text-align: justify;
+  }
+    
+  </style>
+</head>
+
+<div class="container">
+<form id="ampliaciondd" style="display: flex; flex-direction: column; gap: 12px;">
+<table>
+    <tr>
+      <td>
+      <label for="gradoComandante">Grado del Jefe o Encargado</label><br>
+    <select id="gradoComandantea" name="gradoComandantea">
+      <option value="Patrullero">Patrullero</option>
+      <option value="Subintendente">Subintendente</option>
+      <option value="Inteniente">Intendente</option>
+      <option value="Intendente Jefe">Intendente Jefe</option>
+      <option value="Subcomisario">Subcomisario</option>
+      <option value="Comisario">Comisario</option>
+      <option value="Subteniente">Subteniente</option>
+      <option value="Teniente">Teniente</option>
+      <option value="Capitán">Capitán</option>
+      <option value="Mayor">Mayor</option>
+      <option value="Teniente Coronel">Teniente Coronel</option>
+      <option value="Coronel">Coronel</option>
+    </select>
+      </td>
+      <td>
+          <label for="placa">Placa</label><br>
+          <input type="text" id="placaa" name="placaa" required/>
+      </td>
+      <td>
+          <label for="marca">Marca</label><br>
+          <input type="text" id="marcaa" name="marcaa" required/>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <label for="clase">Clase</label><br>
+        <input type="text" id="clasea" name="clasea" required/>
+      </td>
+      <td>
+        <label for="modelo">Modelo</label><br>
+        <input type="text" id="modeloa" name="modeloa" required/>
+      </td>
+      <td>
+        <label for="nchasis">Nº Chasis</label><br>
+        <input type="text" id="nchasisa" name="nchasisa" required/>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <label for="nmotor">Nº Motor</label><br>
+        <input type="text" id="nmotora" name="nmotora" required/>
+      </td>
+      <td>
+        <label for="correo">Correo de Respuesta</label><br>
+        <input type="text" id="correoa" name="correoa" required/>
+      </td>
+    </tr>
+
+    <tr>
+      <td colspan="3">
+        <center><button type="submit" style="margin-top: 1em;">Generar</button></center>
+      </td>
+    </tr>
+
+</table>
+
+
+
+</form>
+</div><br>
+
+<div class="container">
+    
+    <label id="asuntoap" style="font-weight: normal;"></label><br><br>
+    <label id="parrafoap" style="font-weight: normal;"></label><br><br>
+
+<table id="tablaResumen">
+    <tr>
+      <td style="text-align: center; vertical-align: middle;"> <b>PLACA</b></td>
+      <td style="text-align: center; vertical-align: middle;"><b>MARCA</b></td>
+      <td style="text-align: center; vertical-align: middle;"><b>CLASE</b></td>
+      <td style="text-align: center; vertical-align: middle;"><b>MODELO</b></td>
+      <td style="text-align: center; vertical-align: middle;"><b>Nº CHASIS</b></td>
+      <td style="text-align: center; vertical-align: middle;"><b>Nº MOTOR</b></td>
+    </tr>
+    <tr>
+      <td id="celdaplaca" style="text-align: justify; vertical-align: middle;">Placa</td>
+      <td id="celdamarca" style="text-align: justify; vertical-align: middle;">Marca</td>
+      <td id="celdaclase" style="text-align: justify; vertical-align: middle;">Clase</td>
+      <td id="celdamodelo" style="text-align: justify; vertical-align: middle;">Modelo</td>
+      <td id="celdanchasis" style="text-align: justify; vertical-align: middle;">Nº Chasis</td>
+      <td id="celdanmotor" style="text-align: justify; vertical-align: middle;">Nº Motor</td>
+    </tr>
+</table><br>
+    
+    <label id="finap" style="font-weight: normal;"></label><br><br>
+
+</div>

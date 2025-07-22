@@ -140,9 +140,13 @@
     </div>
 
       <div class="menu-group">
-      <div class="menu-item" onclick="toggleSubmenu(this)">Plan de Trabajo ▼</div>
+      <div class="menu-item" onclick="toggleSubmenu(this)">Otros ▼</div>
       <div class="submenu">
         <div class="menu-item" onclick="cargar('plan_de_trabajo.html', 'Plan de Trabajo', this)">Plan de Trabajo</div>
+        <div class="menu-item" onclick="cargar('mantenimiento.html', 'Mantenimiento Parque Automotor', this)">Mantenimiento Parque Automotor</div>
+        <div class="menu-item" onclick="cargar('ampliacion.html', 'Ampliacion de Datos SIJIN Automotores', this)">Ampliacion de Datos SIJIN Automotores</div>
+        <div class="menu-item" onclick="cargar('poe.html', 'Solicitud POE', this)">Solicitud POE</div>
+        <div class="menu-item" onclick="cargar('estudio_t.html', 'Estudio Tecnico', this)">Estudio Tecnico</div>
         <div class="menu-item" onclick="cargar('editor.html', 'Editor de Texto', this)">Editor de Texto</div>
       </div>
     </div>
@@ -294,6 +298,26 @@ function cargar(archivo, titulo, elemento) {
             inicializarFormularioEditor(); 
 			}, 100); // espera 100ms
 			break;
+			case "mantenimiento.html":
+		  setTimeout(() => {
+            inicializarFormularioMantenimiento(); 
+			}, 100); // espera 100ms
+			break;
+			case "ampliacion.html":
+		  setTimeout(() => {
+            inicializarFormularioAmpliacion(); 
+			}, 100); // espera 100ms
+			break;
+			case "poe.html":
+		  setTimeout(() => {
+            inicializarFormularioPoe(); 
+			}, 100); // espera 100ms
+			break;
+			case "estudio_t.html":
+		  setTimeout(() => {
+            inicializarFormularioEstudioTecnico(); 
+			}, 100); // espera 100ms
+			break;
         }
       })
       .catch(error => {
@@ -398,6 +422,35 @@ function inicializarFormularioVehiculoFiscalia() {
     out.value = relato;
   });
 }
+
+function inicializarFormularioEstudioTecnico() {
+  const form = document.getElementById("estudio_t");
+  const out = document.getElementById("relatet");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandanteet").value;
+    const placa = document.getElementById("placaet").value.toUpperCase();
+    const marca = document.getElementById("marcaet").value.toUpperCase();
+    const color = document.getElementById("coloret").value.toUpperCase();
+    const clase = document.getElementById("claseet").value;
+    const modelo = document.getElementById("modeloet").value;
+    const tipoServicio = document.getElementById("tipoServicioet").value;
+    const chasis = document.getElementById("chasiset").value.toUpperCase();
+    const motor = document.getElementById("motoret").value.toUpperCase();
+    const fiscalia = document.getElementById("fiscalet").value;
+    const tipoFiscalia = document.getElementById("tipofiscaliaet").value;
+    const spoa = document.getElementById("spoaet").value;
+    const delito = document.getElementById("delitoet").value;
+
+    const relato = `Respetuosamente me permito solicitar a mi ${grado} tenga bien y estudie la posibilidad de ordenar a quien corresponda realizar el estudio técnico al vehiculo tipo ${clase} de marca ${marca}, color ${color}, modelo ${modelo}, chasis ${chasis}, motor ${motor}, placa ${placa}, servicio ${tipoServicio}, el cual presenta una denuncia por ${delito} mediante número de SPOA ${spoa} solicitada por la fiscalia ${fiscalia} ${tipoFiscalia}. Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+
+
+    out.value = relato;
+  });
+}
+
 
 function inicializarFormularioPersonaFiscalia() {
   const form = document.getElementById("personafiscaliaForm");
@@ -598,10 +651,127 @@ function inicializarFormularioEditor() {
   }
 }
 
+function inicializarFormularioMantenimiento(){
+  const form = document.getElementById("mantenimientoForm");
+  const salida = document.getElementById("relatmanm");
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const grado = document.getElementById("gradoComandantem").value;
+    const mantenimiento = document.getElementById("tipomantenimientom").value;
+    const siglas = document.getElementById("siglasm").value;
+    const marca = document.getElementById("marcam").value.toUpperCase();
+    const linea = document.getElementById("lineam").value.toUpperCase();
+    const kilometraje = document.getElementById("kmm").value;
+
+    let relato = "";
+
+    switch (mantenimiento) {
+      case "Mantenimiento Correctivo":
+        relato = `En atención a la actualización realizada al formato 1LA-PR-2020 versión 10 procedimiento "REALIZAR MANTENIMIENTO DEL PARQUE AUTOMOTOR", en la tarea No 4. De manera atenta y respetuosa me permito solicitar a mi ${grado}, tenga en bien y ordenar a quien corresponda se realice el ${mantenimiento} al vehículo de siglas ${siglas}, marca ${marca}, linea ${linea}, adscrita a la Estación de Policía Belén. Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+        break;
+
+      case "Mantenimiento Preventivo":
+        relato = `En atención a la actualización realizada al formato 1LA-PR-2020 versión 10 procedimiento "REALIZAR MANTENIMIENTO DEL PARQUE AUTOMOTOR", en la tarea No 4. De manera atenta y respetuosa me permito solicitar a mi ${grado}, tenga en bien y ordenar a quien corresponda se realice el ${mantenimiento} al vehículo de siglas ${siglas}, marca ${marca}, linea ${linea}, adscrita a la Estación de Policía Belén. Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+        break;
+
+      case "Cambio de Aceite":
+        relato = `En atención a la actualización realizada al formato 1LA-PR-2020 versión 10 procedimiento "REALIZAR MANTENIMIENTO DEL PARQUE AUTOMOTOR", en la tarea No 4. De manera atenta y respetuosa me permito solicitar a mi ${grado}, tenga en bien y ordenar a quien corresponda se realice el ${mantenimiento} de los ${kilometraje} Km al vehículo de siglas ${siglas}, marca ${marca}, linea ${linea}, adscrita a la Estación de Policía Belén. Lo anterior para conocimiento de mi ${grado} y demás fines estime pertinentes.`;
+        break;
+
+      default:
+        relato = "Tipo de mantenimiento no reconocido.";
+        break;
+    }
+    salida.value = relato;
+    
+  });
+}
+
+  function inicializarFormularioAmpliacion() {
+  const form = document.getElementById("ampliaciondd");
+  
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+     const grado = document.getElementById("gradoComandantea").value;
+     const placa = document.getElementById("placaa").value.toUpperCase();
+     const marca = document.getElementById("marcaa").value.toUpperCase();
+     const clase = document.getElementById("clasea").value.toUpperCase();
+     const modelo = document.getElementById("modeloa").value;
+     const nchasis = document.getElementById("nchasisa").value.toUpperCase();
+     const nmotor = document.getElementById("nmotora").value.toUpperCase();
+     const correo = document.getElementById("correoa").value;
+
+    const asuntopa = `Asunto: Solicitud ampliación datos Vehiculo de placa ${placa}`;
+    const textopa = `De manera atenta y respetuosa me dirijo a mi ${grado} con el fin de solicitar tenga en bien y se ordene a quien corresponda, se amplie información con respecto a los antecedentes penales o judiciales que registre el automotor con las placas de la referencia, el cual corresponde a las siguientes características asi:`;
+    const finpa = `El cual, al ser consultado en el dispositivo móvil PDA, registra antecedente positivo y se encontraba estacionando en via publica sin poder ubicar al propietario.\n\nFavor emitir respuesta al correo electrónico. \n\nCORREO ELECTRÓNICO INSTITUCIONAL: ${correo}. \n\nDe antemano agradezco la atención prestada ante esta solicitud.`;
+    
+    document.getElementById("celdaplaca").textContent = placa;
+    document.getElementById("celdamarca").textContent = marca;
+    document.getElementById("celdaclase").textContent = clase;
+    document.getElementById("celdamodelo").textContent = modelo;
+    document.getElementById("celdanchasis").textContent = nchasis;
+    document.getElementById("celdanmotor").textContent = nmotor;
+    
+    document.getElementById("asuntoap").textContent = asuntopa;
+    document.getElementById("parrafoap").textContent = textopa;
+    document.getElementById("finap").textContent = finpa;
+
+  });
+}
+
+  function inicializarFormularioPoe() {
+  const form = document.getElementById("poe");
+  
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+     const grado = document.getElementById("gradoComandantepoe").value;
+     const cantidad = 1
+     const fecha = document.getElementById("fechapoe").value;
+     const patrulla = document.getElementById("patrullapoe").value;
+     const tactividad = document.getElementById("tactividadpoe").value;
+     const spoa = document.getElementById("spoapoe").value;
+     const incidente = document.getElementById("incidentepoe").value;
+     const companero = document.getElementById("companeropoe").value.toUpperCase();
+
+    const asuntopa = `Asunto: Solicitud Estimulo Por Caso Operativo`;
+    const textopa = `Teniendo en cuenta el desempeño laboral, del suscrito, en el desarrollo de las actividades institucionales y con el propósito de incentivar los desempeños destacados, elevar los niveles de efectividad, satisfacción y bienestar del personal, me permito solicitar a mi ${grado}, tenga a bien estudiar la posibilidad de conceder permiso por las siguientes actividades operativas logradas, así:`;
+    const finpa = `Caso conocido por el señor ${companero} y el suscrito.`;
+    
+    // Crear una nueva fila
+    const tabla = document.getElementById("tablaPoe").querySelector("tbody");
+    const fila = tabla.insertRow();
+
+    // Insertar celdas con los datos
+    fila.insertCell().textContent = fecha;
+    fila.insertCell().textContent = patrulla;
+    fila.insertCell().textContent = tactividad;
+    fila.insertCell().textContent = spoa;
+    fila.insertCell().textContent = incidente;
+
+    
+    document.getElementById("asuntoap").textContent = asuntopa;
+    document.getElementById("parrafoap").textContent = textopa;
+    document.getElementById("finap").textContent = finpa;
+
+  });
+}
+
+
+function limpiarFormulario() {
+  // Obtener el formulario solo si quieres acceder a él (aunque aquí no lo necesitas directamente)
+  // const formulario = document.getElementById("poe");
+  document.getElementById("spoapoe").value = "";
+  document.getElementById("incidentepoe").value = "";
+  document.getElementById("companeropoe").value = ""; // Asegúrate de que este campo exista
+}
+
 function inicializarFormularioPlanDeTrabajo() {
   const form = document.getElementById("plan_dt");
   
-
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
